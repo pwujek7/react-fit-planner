@@ -4,4 +4,7 @@
 #production
 /dist
 
+#testing
+/coverage
+
 /npm-debug.log

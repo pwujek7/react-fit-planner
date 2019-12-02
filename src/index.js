@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Test from './components/test/Test';
+
 const App = () => (
-  <div>test</div>
+  <Test />
 );
 
 const ROOT = document.getElementById('root');
