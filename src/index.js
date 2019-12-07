@@ -1,8 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+
+import { ROUTES } from './constants/routes';
+
+import Navigation from './components/navigation/Navigation';
 
 const App = () => (
-  <div>test</div>
+  <Router>
+    <Navigation />
+    <Switch>
+      {
+        ROUTES.map(route => (
+          <Route key={route.path} exact={route.exact} path={route.path}>
+            {route.component}
+          </Route>
+        ))
+      }
+    </Switch>
+  </Router>
 );
 
 const ROOT = document.getElementById('root');
