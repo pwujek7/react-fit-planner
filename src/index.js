@@ -9,6 +9,7 @@ import {
 import { ROUTES } from './constants/routes';
 
 import Navigation from './components/navigation/Navigation';
+import Page404 from './components/page404/Page404';
 
 const App = () => (
   <Router>
@@ -21,6 +22,9 @@ const App = () => (
           </Route>
         ))
       }
+      <Route>
+        <Page404 />
+      </Route>
     </Switch>
   </Router>
 );

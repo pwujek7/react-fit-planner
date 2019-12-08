@@ -15,6 +15,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "comma-dangle": "off",
     "import/prefer-default-export": "off",
-    "arrow-parens": "off"
+    "arrow-parens": "off",
+    "react/jsx-one-expression-per-line" : "off"
   }
 }
