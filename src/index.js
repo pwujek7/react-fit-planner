@@ -5,6 +5,9 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './store/store';
 
 import { ROUTES } from './constants/routes';
 
@@ -31,4 +34,9 @@ const App = () => (
 
 const ROOT = document.getElementById('root');
 
-ReactDOM.render(<App />, ROOT);
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  ROOT
+);
