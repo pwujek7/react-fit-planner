@@ -16,6 +16,7 @@
     "comma-dangle": "off",
     "import/prefer-default-export": "off",
     "arrow-parens": "off",
-    "react/jsx-one-expression-per-line" : "off"
+    "react/jsx-one-expression-per-line" : "off",
+    "no-underscore-dangle": "off"
   }
 }
