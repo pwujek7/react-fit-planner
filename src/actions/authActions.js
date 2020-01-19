@@ -1,0 +1,63 @@
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_ERROR = 'LOGOUT_ERROR';
+
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+
+export const VERIFY_REQUEST = 'VERIFY_REQUEST';
+export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
+
+const loginSuccess = () => {
+  return {
+    type: LOGIN_SUCCESS
+  };
+};
+
+const loginError = (error) => {
+  return {
+    type: LOGIN_ERROR,
+    payload: error
+  };
+};
+
+const logoutSuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS
+  };
+};
+
+const logoutError = (error) => {
+  return {
+    type: LOGOUT_ERROR,
+    payload: error
+  };
+};
+
+const signupSuccess = () => {
+  return {
+    type: SIGNUP_SUCCESS
+  };
+};
+
+const signupError = (error) => {
+  return {
+    type: SIGNUP_ERROR,
+    payload: error
+  };
+};
+
+const verifyRequest = () => {
+  return {
+    type: VERIFY_REQUEST
+  };
+};
+
+const verifySuccess = (user) => {
+  return {
+    type: VERIFY_SUCCESS,
+    payload: user
+  };
+};
