@@ -1,3 +1,5 @@
+import { auth } from '../config/firebase';
+
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 
@@ -59,5 +61,19 @@ const verifySuccess = (user) => {
   return {
     type: VERIFY_SUCCESS,
     payload: user
+  };
+};
+
+export const signIn = (credentials) => {
+  return (dispatch, getState) => {
+    const { email, password } = credentials;
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        dispatch(loginSuccess());
+      })
+      .catch((error) => {
+        dispatch(loginError(error));
+      });
   };
 };
