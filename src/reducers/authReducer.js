@@ -1,7 +1,9 @@
 import produce from 'immer';
 import {
   LOGIN_SUCCESS,
-  LOGIN_ERROR
+  LOGIN_ERROR,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR
 } from '../actions/authActions';
 
 const initialState = {
@@ -29,6 +31,18 @@ const authReducer = (state = initialState, action) => {
         draft.isAuthenticated = false;
         draft.loginError = true;
         draft.loginErrorMessage = action.payload.message;
+        return;
+      }
+      case LOGOUT_SUCCESS: {
+        draft.logoutError = false;
+        draft.logoutErrorMessage = '';
+        draft.isAuthenticated = false;
+        return;
+      }
+      case LOGOUT_ERROR: {
+        draft.logoutError = true;
+        draft.logoutErrorMessage = action.payload.message;
+        draft.isAuthenticated = false;
         return;
       }
       default:

@@ -77,3 +77,16 @@ export const signIn = (credentials) => {
       });
   };
 };
+
+export const signOut = () => {
+  return (dispatch, getState) => {
+
+    auth.signOut()
+      .then(() => {
+        dispatch(logoutSuccess());
+      })
+      .catch((error) => {
+        dispatch(logoutError(error));
+      });
+  };
+};
