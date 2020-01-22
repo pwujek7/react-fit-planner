@@ -3,7 +3,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   LOGOUT_SUCCESS,
-  LOGOUT_ERROR
+  LOGOUT_ERROR,
+  VERIFY_REQUEST,
+  VERIFY_SUCCESS
 } from '../actions/authActions';
 
 const initialState = {
@@ -37,12 +39,23 @@ const authReducer = (state = initialState, action) => {
         draft.logoutError = false;
         draft.logoutErrorMessage = '';
         draft.isAuthenticated = false;
+        draft.user = {};
         return;
       }
       case LOGOUT_ERROR: {
         draft.logoutError = true;
         draft.logoutErrorMessage = action.payload.message;
         draft.isAuthenticated = false;
+        return;
+      }
+      case VERIFY_REQUEST: {
+        draft.isVerifying = true;
+        return;
+      }
+      case VERIFY_SUCCESS: {
+        draft.isVerifying = false;
+        draft.isAuthenticated = true;
+        draft.user = action.payload;
         return;
       }
       default:
