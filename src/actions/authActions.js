@@ -90,3 +90,15 @@ export const signOut = () => {
       });
   };
 };
+
+export const verifyAuth = () => {
+  return (dispatch, getState) => {
+    dispatch(verifyRequest());
+
+    auth.onAuthStateChanged((user) => {
+      if (user !== null) {
+        dispatch(verifySuccess(user));
+      }
+    });
+  };
+};
