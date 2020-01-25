@@ -1,4 +1,4 @@
-import { auth } from '../config/firebase';
+import { auth, db } from '../config/firebase';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
@@ -100,5 +100,25 @@ export const verifyAuth = () => {
         dispatch(verifySuccess(user));
       }
     });
+  };
+};
+
+export const signUp = (credentials) => {
+  return (dispatch, getState) => {
+    auth.createUserWithEmailAndPassword(
+      credentials.email,
+      credentials.password
+    )
+      .then((response) => {
+        return db.collection('users').doc(response.user.uid).set({
+          username: credentials.username
+        });
+      })
+      .then(() => {
+        dispatch(signupSuccess());
+      })
+      .catch((error) => {
+        dispatch(signupError(error));
+      });
   };
 };
