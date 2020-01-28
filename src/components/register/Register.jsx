@@ -1,63 +1,58 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   connect,
   useSelector
 } from 'react-redux';
+import {
+  Formik,
+  Field,
+  Form,
+  ErrorMessage
+} from 'formik';
+import PropTypes from 'prop-types';
 
 import { signUp } from '../../actions/authActions';
+import { registerValidation } from '../../schema/validation';
 
 const Register = ({ register }) => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const auth = useSelector(state => state.auth);
-
-  const handleUsernameChange = (event) => {
-    const { value } = event.target;
-    setUsername(value);
-  };
-
-  const handleEmailChange = (event) => {
-    const { value } = event.target;
-    setEmail(value);
-  };
-
-  const handlePasswordChange = (event) => {
-    const { value } = event.target;
-    setPassword(value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    register({ username, email, password });
-  };
-
   const { signupError, signupErrorMessage } = auth;
 
   return (
-    <form onSubmit={handleSubmit}>
-      Register form
-      <br />
-      <label htmlFor="username">
-        username:
-        <input type="text" name="username" value={username} onChange={handleUsernameChange} />
-      </label>
-      <br />
-      <label htmlFor="email">
-        email:
-        <input type="text" name="email" value={email} onChange={handleEmailChange} />
-      </label>
-      <br />
-      <label htmlFor="password">
-        password:
-        <input type="password" name="password" value={password} onChange={handlePasswordChange} />
-      </label>
-      <br />
-      {
-        signupError && <p>{signupErrorMessage}</p>
-      }
-      <button type="submit">Sign Up</button>
-    </form>
+    <Formik
+      initialValues={{
+        username: '',
+        email: '',
+        password: ''
+      }}
+      validationSchema={registerValidation}
+      onSubmit={(values) => {
+        register({ ...values });
+      }}
+    >
+      <>
+        <Form>
+          <span>Register form</span>
+          <br />
+          <label htmlFor="username">username: </label>
+          <Field name="username" type="text" />
+          <ErrorMessage name="username" />
+          <br />
+          <label htmlFor="email">e-mail: </label>
+          <Field name="email" type="text" />
+          <ErrorMessage name="email" />
+          <br />
+          <label htmlFor="password">password: </label>
+          <Field name="password" type="password" />
+          <ErrorMessage name="password" />
+          <br />
+          <button type="submit">Register</button>
+        </Form>
+        {
+          signupError && <p>{signupErrorMessage}</p>
+        }
+      </>
+    </Formik>
   );
 };
 
@@ -65,6 +60,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     register: (credentials) => dispatch(signUp(credentials))
   };
+};
+
+Register.propTypes = {
+  register: PropTypes.func.isRequired
 };
 
 export default connect(null, mapDispatchToProps)(Register);
