@@ -30,6 +30,9 @@ const Navigation = ({ logout }) => {
           <NavLink to="/settings">Settings</NavLink>
         </li>
         <li>
+          <NavLink to="/day">Day</NavLink>
+        </li>
+        <li>
           {
             isLoggedIn()
           }
