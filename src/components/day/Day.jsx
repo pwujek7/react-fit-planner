@@ -11,6 +11,41 @@ const Day = () => {
     <Formik
       initialValues={{
         isTrainingDay: false,
+        meals: [
+          {
+            name: 'dinner',
+            ingredients: [
+              {
+                name: 'chicken breast',
+                weight: 270,
+                proteins: 60,
+                carbs: 0,
+                fat: 10
+              },
+              {
+                name: 'jasmine rice',
+                weight: 100,
+                proteins: 6,
+                carbs: 78,
+                fat: 0
+              },
+              {
+                name: 'coleslaw salad',
+                weight: 300,
+                proteins: 3,
+                carbs: 30,
+                fat: 8
+              },
+              {
+                name: 'rice oil',
+                weight: 10,
+                proteins: 0,
+                carbs: 0,
+                fat: 9
+              }
+            ]
+          }
+        ],
         exercises: [
           {
             name: 'barbell bench press',
@@ -44,6 +79,74 @@ const Day = () => {
         ({ values }) => (
           <Form>
             <p>Day Form</p>
+            <br />
+            <FieldArray
+              id="meals"
+              name="meals"
+              render={mealsHelpers => {
+                const { meals } = values;
+                return (
+                  <div>
+                    {
+                      meals
+                      && meals.length > 0
+                      && meals.map((meal, mealIndex) => (
+                          <div key={mealIndex}>
+                            <span>Meal {mealIndex + 1}</span>
+                            <Field name={`meals[${mealIndex}].name`} />
+
+                            <FieldArray
+                              id={`meals[${mealIndex}].ingredients`}
+                              name={`meals[${mealIndex}].ingredients`}
+                              render={ingredientsHelpers => {
+                                return (
+                                  <div>
+                                    {
+                                      meals[mealIndex].ingredients
+                                      && meals[mealIndex].ingredients.length > 0
+                                      && meals[mealIndex].ingredients.map((ingredient, ingredientIndex) => (
+                                        <div key={ingredientIndex}>
+                                          <span>Ingredient {ingredientIndex + 1}</span>
+                                          <Field id={`meals[${mealIndex}].ingredients[${ingredientIndex}].name`} name={`meals[${mealIndex}].ingredients[${ingredientIndex}].name`} />
+                                          <Field id={`meals[${mealIndex}].ingredients[${ingredientIndex}].weight`} name={`meals[${mealIndex}].ingredients[${ingredientIndex}].weight`} />
+                                          <Field id={`meals[${mealIndex}].ingredients[${ingredientIndex}].proteins`} name={`meals[${mealIndex}].ingredients[${ingredientIndex}].proteins`} />
+                                          <Field id={`meals[${mealIndex}].ingredients[${ingredientIndex}].carbs`} name={`meals[${mealIndex}].ingredients[${ingredientIndex}].carbs`} />
+                                          <Field id={`meals[${mealIndex}].ingredients[${ingredientIndex}].fat`} name={`meals[${mealIndex}].ingredients[${ingredientIndex}].fat`} />
+                                          <button
+                                            type="button"
+                                            onClick={() => ingredientsHelpers.remove(ingredientIndex)}
+                                          >
+                                            Delete ingredient
+                                          </button>
+                                        </div>
+                                      ))
+                                    }
+                                    <button type="button" onClick={() => ingredientsHelpers.push({ name: '', weight: '', proteins: '', carbs: '', fat: '' })}>
+                                      Add ingredient
+                                    </button>
+                                  </div>
+                                );
+                              }}
+                            />
+
+                            <button
+                              type="button"
+                              onClick={() => mealsHelpers.remove(mealIndex)}
+                            >
+                              Delete meal
+                            </button>
+                          </div>
+                      ))
+                    }
+                    <br />
+                    <button type="button" onClick={() => mealsHelpers.push({ name: '', ingredients: [] })}>
+                      Add meal
+                    </button>
+                  </div>
+                );
+              }}
+            />
+            <br />
             <div>
               <span>Do you train today ?</span>
               <Field type="checkbox" id="isTrainingDay" name="isTrainingDay" checked={values.isTrainingDay} />
