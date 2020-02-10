@@ -4,6 +4,7 @@ import Register from '../components/register/Register';
 import Login from '../components/login/Login';
 import Settings from '../components/settings/Settings';
 import Day from '../components/day/Day';
+import DayDetails from '../components/day/DayDetails';
 
 export const ROUTES = [
   {
@@ -26,5 +27,9 @@ export const ROUTES = [
   {
     path: '/day',
     component: <Day />
-  }
+  },
+  {
+    path: '/:dayId',
+    component: <DayDetails />
+  },
 ];

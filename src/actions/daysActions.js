@@ -84,7 +84,10 @@ export const fetchAllDays = () => (dispatch, getState) => {
         const fetchedDays = [];
 
         querySnapshot.forEach((doc) => {
-          fetchedDays.push(doc.data());
+          fetchedDays.push({
+            id: doc.id,
+            ...doc.data()
+          });
         });
 
         dispatch(fetchAllDaysSuccess(fetchedDays));

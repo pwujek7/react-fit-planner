@@ -8,7 +8,6 @@ import {
 import { Provider } from 'react-redux';
 
 import configureStore from './store/store';
-import { verifyAuth } from './actions/authActions';
 
 import { ROUTES } from './constants/routes';
 
@@ -34,32 +33,6 @@ const App = () => (
     </Switch>
   </Router>
 );
-
-// class App extends React.Component {
-//   componentDidMount = () => {
-//     store.dispatch(verifyAuth());
-//   }
-
-//   render() {
-//     return (
-//       <Router>
-//         <Navigation />
-//         <Switch>
-//           {
-//             ROUTES.map(route => (
-//               <Route key={route.path} exact={route.exact} path={route.path}>
-//                 {route.component}
-//               </Route>
-//             ))
-//           }
-//           <Route>
-//             <Page404 />
-//           </Route>
-//         </Switch>
-//       </Router>
-//     )
-//   }
-// }
 
 const ROOT = document.getElementById('root');
 
