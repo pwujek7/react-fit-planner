@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchAllDays } from '../../actions/daysActions';
 
+import DayList from '../day/DayList';
+
 const Home = () => {
   const days = useSelector(state => state.days);
   const {
+    data,
     fetchAllDaysLoading,
     fetchAllDaysError,
     fetchAllDaysErrorMessage
@@ -13,6 +16,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (data.length > 0) return;
     dispatch(fetchAllDays());
   }, []);
 
@@ -26,6 +30,11 @@ const Home = () => {
       {
         fetchAllDaysLoading
         && <span>Loading...</span>
+      }
+
+      {
+        (data && !fetchAllDaysError && !fetchAllDaysLoading)
+        && <DayList days={data} />
       }
     </div>
   );
