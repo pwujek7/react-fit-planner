@@ -34,7 +34,7 @@ const Home = () => {
 
       {
         (data && !fetchAllDaysError && !fetchAllDaysLoading)
-        && <DayList days={data} />
+        && <DayList data={data} />
       }
     </div>
   );

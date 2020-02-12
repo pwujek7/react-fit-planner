@@ -1,24 +1,44 @@
 import React from 'react';
+import { connect, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const DayList = ({ days }) => (
-  <div>
-    <ul>
-      {
-        days.map((day) => (
-          <li key={day.id}>
-            {day.id}
-            <Link to={`/${day.id}`}>Podgląd</Link>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-);
+import { removeDay } from '../../actions/daysActions';
 
-DayList.propTypes = {
-  days: PropTypes.arrayOf(PropTypes.object).isRequired
+const DayList = ({ data, remove }) => {
+  const days = useSelector(state => state.days);
+  const { deleteDayError, deleteDayErrorMessage } = days;
+
+  return (
+    <div>
+      <ul>
+        {
+          data.map((day) => (
+            <li key={day.id}>
+              {day.id}
+              <Link to={`/${day.id}`}>podgląd</Link>
+              <button type="button" onClick={() => remove(day.id)}>usuń</button>
+            </li>
+          ))
+        }
+      </ul>
+      {
+        deleteDayError
+        && <span>{deleteDayErrorMessage}</span>
+      }
+    </div>
+  );
 };
 
-export default DayList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    remove: (id) => dispatch(removeDay(id))
+  };
+};
+
+DayList.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  remove: PropTypes.func.isRequired
+};
+
+export default connect(null, mapDispatchToProps)(DayList);

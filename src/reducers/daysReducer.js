@@ -3,7 +3,8 @@ import {
   ADD_DAY_SUCCESS,
   ADD_DAY_ERROR,
   EDIT_DAY,
-  DELETE_DAY,
+  DELETE_DAY_SUCCESS,
+  DELETE_DAY_ERROR,
   FETCH_ALL_DAYS_START,
   FETCH_ALL_DAYS_SUCCESS,
   FETCH_ALL_DAYS_ERROR
@@ -12,6 +13,8 @@ import {
 const initialState = {
   postDayError: false,
   postDayErrorMessage: '',
+  deleteDayError: false,
+  deleteDayErrorMessage: '',
   fetchAllDaysLoading: false,
   fetchAllDaysError: false,
   fetchAllDaysErrorMessage: '',
@@ -36,7 +39,15 @@ const daysReducer = (state = initialState, action) => {
       case EDIT_DAY: {
         return;
       }
-      case DELETE_DAY: {
+      case DELETE_DAY_SUCCESS: {
+        draft.data.splice(draft.data.findIndex(day => day.id === action.payload), 1);
+        draft.deleteDayError = false;
+        draft.deleteDayErrorMessage = '';
+        return;
+      }
+      case DELETE_DAY_ERROR: {
+        draft.deleteDayError = true;
+        draft.deleteDayErrorMessage = action.payload.message;
         return;
       }
       case FETCH_ALL_DAYS_START: {
