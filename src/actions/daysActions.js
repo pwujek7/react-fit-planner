@@ -3,7 +3,8 @@ import { db } from '../config/firebase';
 export const ADD_DAY_SUCCESS = 'ADD_DAY_SUCCESS';
 export const ADD_DAY_ERROR = 'ADD_DAY_ERROR';
 export const EDIT_DAY = 'EDIT_DAY';
-export const DELETE_DAY = 'DELETE_DAY';
+export const DELETE_DAY_SUCCESS = 'DELETE_DAY_SUCCESS';
+export const DELETE_DAY_ERROR = 'DELETE_DAY_ERROR';
 export const FETCH_ALL_DAYS_START = 'FETCH_ALL_DAYS_START';
 export const FETCH_ALL_DAYS_SUCCESS = 'FETCH_ALL_DAYS_SUCCESS';
 export const FETCH_ALL_DAYS_ERROR = 'FETCH_ALL_DAYS_ERROR';
@@ -29,10 +30,17 @@ export const editDay = (day) => {
   };
 };
 
-export const deleteDay = (id) => {
+export const deleteDaySuccess = (id) => {
   return {
-    type: DELETE_DAY,
+    type: DELETE_DAY_SUCCESS,
     payload: id
+  };
+};
+
+export const deleteDayError = (error) => {
+  return {
+    type: DELETE_DAY_ERROR,
+    payload: error
   };
 };
 
@@ -69,6 +77,16 @@ export const createDay = (day) => (dispatch, getState) => {
     })
     .catch((error) => {
       dispatch(addDayError(error));
+    });
+};
+
+export const removeDay = (id) => (dispatch, getState) => {
+  db.collection('days').doc(id).delete()
+    .then(() => {
+      dispatch(deleteDaySuccess(id));
+    })
+    .catch((error) => {
+      dispatch(deleteDayError(error));
     });
 };
 
