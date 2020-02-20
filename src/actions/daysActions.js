@@ -2,7 +2,8 @@ import { db } from '../config/firebase';
 
 export const ADD_DAY_SUCCESS = 'ADD_DAY_SUCCESS';
 export const ADD_DAY_ERROR = 'ADD_DAY_ERROR';
-export const EDIT_DAY = 'EDIT_DAY';
+export const EDIT_DAY_SUCCESS = 'EDIT_DAY_SUCCESS';
+export const EDIT_DAY_ERROR = 'EDIT_DAY_ERROR';
 export const DELETE_DAY_SUCCESS = 'DELETE_DAY_SUCCESS';
 export const DELETE_DAY_ERROR = 'DELETE_DAY_ERROR';
 export const FETCH_ALL_DAYS_START = 'FETCH_ALL_DAYS_START';
@@ -23,10 +24,20 @@ export const addDayError = (error) => {
   };
 };
 
-export const editDay = (day) => {
+export const editDaySuccess = (day, id) => {
   return {
-    type: EDIT_DAY,
-    payload: day
+    type: EDIT_DAY_SUCCESS,
+    payload: {
+      day,
+      id
+    }
+  };
+};
+
+export const editDayError = (error) => {
+  return {
+    type: EDIT_DAY_ERROR,
+    payload: error
   };
 };
 
@@ -80,7 +91,19 @@ export const createDay = (day) => (dispatch, getState) => {
     });
 };
 
-export const removeDay = (id) => (dispatch, getState) => {
+export const updateDay = (day, id) => (dispatch) => {
+  db.collection('days').doc(id).update({
+    ...day
+  })
+    .then(() => {
+      dispatch(editDaySuccess(day, id));
+    })
+    .catch((error) => {
+      dispatch(editDayError(error));
+    });
+};
+
+export const removeDay = (id) => (dispatch) => {
   db.collection('days').doc(id).delete()
     .then(() => {
       dispatch(deleteDaySuccess(id));

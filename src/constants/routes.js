@@ -25,6 +25,10 @@ export const ROUTES = [
     component: <Settings />
   },
   {
+    path: '/day/:dayId',
+    component: <Day />
+  },
+  {
     path: '/day',
     component: <Day />
   },
