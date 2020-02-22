@@ -12,6 +12,9 @@ export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 export const VERIFY_REQUEST = 'VERIFY_REQUEST';
 export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 
+export const UPDATE_EMAIL_SUCCESS = 'UPDATE_EMAIL_SUCCESS';
+export const UPDATE_EMAIL_ERROR = 'UPDATE_EMAIL_ERROR';
+
 const loginSuccess = () => {
   return {
     type: LOGIN_SUCCESS
@@ -64,8 +67,22 @@ const verifySuccess = (user) => {
   };
 };
 
+const updateEmailSuccess = (email) => {
+  return {
+    type: UPDATE_EMAIL_SUCCESS,
+    payload: email
+  };
+};
+
+const updateEmailError = (error) => {
+  return {
+    type: UPDATE_EMAIL_ERROR,
+    payload: error
+  };
+};
+
 export const signIn = (credentials) => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     const { email, password } = credentials;
 
     auth.signInWithEmailAndPassword(email, password)
@@ -79,7 +96,7 @@ export const signIn = (credentials) => {
 };
 
 export const signOut = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
 
     auth.signOut()
       .then(() => {
@@ -92,7 +109,7 @@ export const signOut = () => {
 };
 
 export const verifyAuth = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(verifyRequest());
 
     auth.onAuthStateChanged((user) => {
@@ -104,7 +121,7 @@ export const verifyAuth = () => {
 };
 
 export const signUp = (credentials) => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     auth.createUserWithEmailAndPassword(
       credentials.email,
       credentials.password
@@ -119,6 +136,19 @@ export const signUp = (credentials) => {
       })
       .catch((error) => {
         dispatch(signupError(error));
+      });
+  };
+};
+
+export const updateEmail = (email) => {
+  return (dispatch) => {
+    const user = auth.currentUser;
+    user.updateEmail(email)
+      .then(() => {
+        dispatch(updateEmailSuccess(email));
+      })
+      .catch((error) => {
+        dispatch(updateEmailError(error));
       });
   };
 };

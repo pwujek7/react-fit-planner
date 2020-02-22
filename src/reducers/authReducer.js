@@ -7,7 +7,9 @@ import {
   VERIFY_REQUEST,
   VERIFY_SUCCESS,
   SIGNUP_SUCCESS,
-  SIGNUP_ERROR
+  SIGNUP_ERROR,
+  UPDATE_EMAIL_SUCCESS,
+  UPDATE_EMAIL_ERROR
 } from '../actions/authActions';
 
 const initialState = {
@@ -19,6 +21,8 @@ const initialState = {
   signupError: false,
   signupErrorMessage: '',
   isAuthenticated: false,
+  updateEmailError: false,
+  updateEmailErrorMessage: '',
   user: {}
 };
 
@@ -70,6 +74,17 @@ const authReducer = (state = initialState, action) => {
         draft.signupError = true;
         draft.signupErrorMessage = action.payload.message;
         draft.isAuthenticated = false;
+        return;
+      }
+      case UPDATE_EMAIL_SUCCESS: {
+        draft.updateEmailError = false;
+        draft.updateEmailErrorMessage = '';
+        draft.user = { ...draft.user, email: action.payload };
+        return;
+      }
+      case UPDATE_EMAIL_ERROR: {
+        draft.updateEmailError = true;
+        draft.updateEmailErrorMessage = action.payload.message;
         return;
       }
       default:
