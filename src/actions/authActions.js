@@ -15,6 +15,9 @@ export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 export const UPDATE_EMAIL_SUCCESS = 'UPDATE_EMAIL_SUCCESS';
 export const UPDATE_EMAIL_ERROR = 'UPDATE_EMAIL_ERROR';
 
+export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS';
+export const UPDATE_PASSWORD_ERROR = 'UPDATE_PASSWORD_ERROR';
+
 const loginSuccess = () => {
   return {
     type: LOGIN_SUCCESS
@@ -77,6 +80,19 @@ const updateEmailSuccess = (email) => {
 const updateEmailError = (error) => {
   return {
     type: UPDATE_EMAIL_ERROR,
+    payload: error
+  };
+};
+
+const updatePasswordSuccess = () => {
+  return {
+    type: UPDATE_PASSWORD_SUCCESS,
+  };
+};
+
+const updatePasswordError = (error) => {
+  return {
+    type: UPDATE_PASSWORD_ERROR,
     payload: error
   };
 };
@@ -149,6 +165,19 @@ export const updateEmail = (email) => {
       })
       .catch((error) => {
         dispatch(updateEmailError(error));
+      });
+  };
+};
+
+export const updatePassword = (password) => {
+  return (dispatch) => {
+    const user = auth.currentUser;
+    user.updatePassword(password)
+      .then(() => {
+        dispatch(updatePasswordSuccess());
+      })
+      .catch((error) => {
+        dispatch(updatePasswordError(error));
       });
   };
 };

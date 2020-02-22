@@ -4,10 +4,12 @@ export const emailValidation = Yup.string()
   .email('Invalid email address')
   .required('Required');
 
+export const passwordValidation = Yup.string()
+  .required('Required');
+
 export const loginValidation = Yup.object({
   email: emailValidation,
-  password: Yup.string()
-    .required('Required'),
+  password: passwordValidation,
 });
 
 export const registerValidation = Yup.object({
@@ -15,6 +17,5 @@ export const registerValidation = Yup.object({
     .max(20, 'Must be no more than 20 characters')
     .required('Required'),
   email: emailValidation,
-  password: Yup.string()
-    .required('Required'),
+  password: passwordValidation,
 });
