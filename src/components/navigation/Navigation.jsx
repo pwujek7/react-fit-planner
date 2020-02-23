@@ -1,21 +1,29 @@
 import React from 'react';
 import { connect, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { signOut } from '../../actions/authActions';
 
+import AuthenticatedLinks from './AuthenticatedLinks';
+import UnAuthenticatedLinks from './UnAuthenticatedLinks';
+
 const Navigation = ({ logout }) => {
   const auth = useSelector(state => state.auth);
+  const { isAuthenticated } = auth;
 
   const handleLogout = () => {
     logout();
   };
 
-  const isLoggedIn = () => {
-    return auth.isAuthenticated
-      ? <button type="button" onClick={handleLogout}>Logout</button>
-      : <NavLink to="/login">Login</NavLink>;
-  };
+  const unAuthenticatedLinks = !isAuthenticated && <UnAuthenticatedLinks />;
+  const authenticatedLinks = isAuthenticated
+    && (
+      <>
+        <AuthenticatedLinks />
+        <button type="button" onClick={handleLogout}>Logout</button>
+      </>
+    );
 
   return (
     <nav>
@@ -23,20 +31,8 @@ const Navigation = ({ logout }) => {
         <li>
           <NavLink exact to="/">Home</NavLink>
         </li>
-        <li>
-          <NavLink to="/register">Register</NavLink>
-        </li>
-        <li>
-          <NavLink to="/settings">Settings</NavLink>
-        </li>
-        <li>
-          <NavLink to="/day">Day</NavLink>
-        </li>
-        <li>
-          {
-            isLoggedIn()
-          }
-        </li>
+        {unAuthenticatedLinks}
+        {authenticatedLinks}
       </ul>
     </nav>
   );
@@ -46,6 +42,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(signOut())
   };
+};
+
+Navigation.propTypes = {
+  logout: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Navigation);

@@ -19,6 +19,7 @@
     "react/jsx-one-expression-per-line" : "off",
     "no-underscore-dangle": "off",
     "arrow-body-style": "off",
-    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["draft"] }]
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["draft"] }],
+    "react/jsx-props-no-spreading": "off"
   }
 }
