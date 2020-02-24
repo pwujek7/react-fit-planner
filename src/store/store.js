@@ -9,12 +9,20 @@ import thunk from 'redux-thunk';
 import daysReducer from '../reducers/daysReducer';
 import authReducer from '../reducers/authReducer';
 
-import { verifyAuth } from '../actions/authActions';
+import { LOGOUT_SUCCESS, verifyAuth } from '../actions/authActions';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   days: daysReducer,
   auth: authReducer
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === LOGOUT_SUCCESS) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};
 
 export default function configureStore() {
   const store = createStore(
