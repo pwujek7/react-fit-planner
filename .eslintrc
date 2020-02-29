@@ -20,6 +20,7 @@
     "no-underscore-dangle": "off",
     "arrow-body-style": "off",
     "no-param-reassign": ["off", { "props": true, "ignorePropertyModificationsFor": ["draft"] }],
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off"
   }
 }

@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  connect,
-  useSelector
-} from 'react-redux';
-import {
-  Formik,
-  Field,
-  Form,
-  ErrorMessage
-} from 'formik';
+import { connect, useSelector } from 'react-redux';
+import { Formik, Form } from 'formik';
 import PropTypes from 'prop-types';
+
+import TextInput from '../common/TextInput';
 
 import { signIn } from '../../actions/authActions';
 import { loginValidation } from '../../schema/validation';
@@ -33,13 +27,9 @@ const Login = ({ login }) => {
         <Form>
           <span>Login form</span>
           <br />
-          <label htmlFor="email">e-mail: </label>
-          <Field name="email" type="text" />
-          <ErrorMessage name="email" />
+          <TextInput name="email" type="text" label="e-mail:" validate />
           <br />
-          <label htmlFor="password">password: </label>
-          <Field name="password" type="password" />
-          <ErrorMessage name="password" />
+          <TextInput name="password" type="password" label="password:" validate />
           <br />
           <button type="submit">Login</button>
         </Form>

@@ -4,8 +4,16 @@ export const emailValidation = Yup.string()
   .email('Invalid email address')
   .required('Required');
 
+export const newEmailValidation = Yup.object({
+  email: emailValidation
+});
+
 export const passwordValidation = Yup.string()
   .required('Required');
+
+export const newPasswordValidation = Yup.object({
+  password: passwordValidation,
+});
 
 export const loginValidation = Yup.object({
   email: emailValidation,

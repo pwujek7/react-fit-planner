@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  connect,
-  useSelector
-} from 'react-redux';
-import {
-  Formik,
-  Field,
-  Form,
-  ErrorMessage
-} from 'formik';
+import { connect, useSelector } from 'react-redux';
+import { Formik, Form } from 'formik';
 import PropTypes from 'prop-types';
+
+import TextInput from '../common/TextInput';
 
 import { signUp } from '../../actions/authActions';
 import { registerValidation } from '../../schema/validation';
@@ -34,17 +28,11 @@ const Register = ({ register }) => {
         <Form>
           <span>Register form</span>
           <br />
-          <label htmlFor="username">username: </label>
-          <Field name="username" type="text" />
-          <ErrorMessage name="username" />
+          <TextInput name="username" type="text" label="username:" validate />
           <br />
-          <label htmlFor="email">e-mail: </label>
-          <Field name="email" type="text" />
-          <ErrorMessage name="email" />
+          <TextInput name="email" type="text" label="e-mail:" validate />
           <br />
-          <label htmlFor="password">password: </label>
-          <Field name="password" type="password" />
-          <ErrorMessage name="password" />
+          <TextInput name="password" type="password" label="password:" validate />
           <br />
           <button type="submit">Register</button>
         </Form>
