@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { connect, useSelector } from 'react-redux';
-import {
-  Formik,
-  Field,
-  Form,
-  ErrorMessage
-} from 'formik';
+import { Formik, Form } from 'formik';
 import PropTypes from 'prop-types';
 
+import TextInput from '../common/TextInput';
+
 import { updateEmail, updatePassword } from '../../actions/authActions';
-import { emailValidation, passwordValidation } from '../../schema/validation';
+import { newEmailValidation, newPasswordValidation } from '../../schema/validation';
 
 const Settings = ({ newEmail, newPassword }) => {
   const [showEmail, setShowEmail] = useState(false);
@@ -43,7 +40,7 @@ const Settings = ({ newEmail, newPassword }) => {
               initialValues={{
                 email: ''
               }}
-              validationSchema={emailValidation}
+              validationSchema={newEmailValidation}
               onSubmit={(values) => {
                 newEmail(values.email);
               }}
@@ -51,9 +48,7 @@ const Settings = ({ newEmail, newPassword }) => {
               <>
                 <Form>
                   <br />
-                  <label htmlFor="email">New e-mail: </label>
-                  <Field name="email" type="text" />
-                  <ErrorMessage name="email" />
+                  <TextInput name="email" type="text" label="New e-mail:" validate />
                   <br />
                   <button type="submit">Change</button>
                 </Form>
@@ -74,7 +69,7 @@ const Settings = ({ newEmail, newPassword }) => {
               initialValues={{
                 password: ''
               }}
-              validationSchema={passwordValidation}
+              validationSchema={newPasswordValidation}
               onSubmit={(values) => {
                 newPassword(values.password);
               }}
@@ -82,9 +77,7 @@ const Settings = ({ newEmail, newPassword }) => {
               <>
                 <Form>
                   <br />
-                  <label htmlFor="password">New password: </label>
-                  <Field name="password" type="password" />
-                  <ErrorMessage name="password" />
+                  <TextInput name="password" type="password" label="New password:" validate />
                   <br />
                   <button type="submit">Change</button>
                 </Form>
