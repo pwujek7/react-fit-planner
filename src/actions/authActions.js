@@ -156,7 +156,8 @@ export const signUp = (credentials) => {
   };
 };
 
-export const updateEmail = (email) => {
+export const updateEmail = (value) => {
+  const { email } = value;
   return (dispatch) => {
     const user = auth.currentUser;
     user.updateEmail(email)
@@ -169,7 +170,8 @@ export const updateEmail = (email) => {
   };
 };
 
-export const updatePassword = (password) => {
+export const updatePassword = (value) => {
+  const { password } = value;
   return (dispatch) => {
     const user = auth.currentUser;
     user.updatePassword(password)
