@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { Formik, Form } from 'formik';
+import { Form } from 'formik';
 import PropTypes from 'prop-types';
 
 import TextInput from '../common/TextInput';
+import SettingsForm from './SettingsForm';
 
 import { updateEmail, updatePassword } from '../../actions/authActions';
 import { newEmailValidation, newPasswordValidation } from '../../schema/validation';
@@ -36,28 +37,26 @@ const Settings = ({ newEmail, newPassword }) => {
         {
           showEmail
           && (
-            <Formik
-              initialValues={{
-                email: ''
-              }}
-              validationSchema={newEmailValidation}
-              onSubmit={(values) => {
-                newEmail(values.email);
-              }}
+            <SettingsForm
+              initialValues={{ email: '' }}
+              schema={newEmailValidation}
+              updateFunction={newEmail}
             >
-              <>
-                <Form>
-                  <br />
-                  <TextInput name="email" type="text" label="New e-mail:" validate />
-                  <br />
-                  <button type="submit">Change</button>
-                </Form>
-                {
-                  updateEmailError && <span>{updateEmailErrorMessage}</span>
-                }
-              </>
-            </Formik>
+              {
+                () => (
+                  <Form>
+                    <br />
+                    <TextInput name="email" type="text" label="New e-mail:" validate />
+                    <br />
+                    <button type="submit">Change</button>
+                  </Form>
+                )
+              }
+            </SettingsForm>
           )
+        }
+        {
+          updateEmailError && <span>{updateEmailErrorMessage}</span>
         }
       </div>
       <div>
@@ -65,28 +64,26 @@ const Settings = ({ newEmail, newPassword }) => {
         {
           showPassword
           && (
-            <Formik
-              initialValues={{
-                password: ''
-              }}
-              validationSchema={newPasswordValidation}
-              onSubmit={(values) => {
-                newPassword(values.password);
-              }}
+            <SettingsForm
+              initialValues={{ password: '' }}
+              schema={newPasswordValidation}
+              updateFunction={newPassword}
             >
-              <>
-                <Form>
-                  <br />
-                  <TextInput name="password" type="password" label="New password:" validate />
-                  <br />
-                  <button type="submit">Change</button>
-                </Form>
-                {
-                  updatePasswordError && <span>{updatePasswordErrorMessage}</span>
-                }
-              </>
-            </Formik>
+              {
+                () => (
+                  <Form>
+                    <br />
+                    <TextInput name="password" type="password" label="New password:" validate />
+                    <br />
+                    <button type="submit">Change</button>
+                  </Form>
+                )
+              }
+            </SettingsForm>
           )
+        }
+        {
+          updatePasswordError && <span>{updatePasswordErrorMessage}</span>
         }
       </div>
     </div>

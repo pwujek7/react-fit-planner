@@ -9,6 +9,7 @@ export const newEmailValidation = Yup.object({
 });
 
 export const passwordValidation = Yup.string()
+  .min(6, 'Must be at least 6 characters')
   .required('Required');
 
 export const newPasswordValidation = Yup.object({
