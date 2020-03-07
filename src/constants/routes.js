@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from '../components/home/Home';
 import Settings from '../components/settings/Settings';
-import Day from '../components/day/Day';
+import DayForm from '../components/day/DayForm';
 import DayDetails from '../components/day/DayDetails';
 
 export const ROUTES = [
@@ -16,11 +16,11 @@ export const ROUTES = [
   },
   {
     path: '/day/:dayId',
-    component: () => <Day />
+    component: () => <DayForm />
   },
   {
     path: '/day',
-    component: () => <Day />
+    component: () => <DayForm />
   },
   {
     path: '/:dayId',
