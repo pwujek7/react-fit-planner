@@ -12,12 +12,12 @@ import FoodSection from './FoodSection';
 import TrainingSection from './TrainingSection';
 
 import { createDay, updateDay } from '../../actions/daysActions';
-import { selectDayById } from '../../selectors/selectors';
+import { selectDays, selectDayById } from '../../selectors/selectors';
 import { emptyValues } from '../../constants/emptyValues';
 
 const DayForm = ({ create, update }) => {
   const { dayId } = useParams();
-  const days = useSelector(state => state.days);
+  const days = useSelector(selectDays);
   const dayValues = useSelector(selectDayById(dayId));
   const isEditMode = dayId !== undefined;
   const initialValues = isEditMode ? dayValues[0] : emptyValues;

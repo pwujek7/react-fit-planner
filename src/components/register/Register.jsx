@@ -3,13 +3,15 @@ import { connect, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import PropTypes from 'prop-types';
 
+import { selectAuth } from '../../selectors/selectors';
+
 import TextInput from '../common/TextInput';
 
 import { signUp } from '../../actions/authActions';
 import { registerValidation } from '../../schema/validation';
 
 const Register = ({ register }) => {
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector(selectAuth);
   const { signupError, signupErrorMessage } = auth;
 
   return (
