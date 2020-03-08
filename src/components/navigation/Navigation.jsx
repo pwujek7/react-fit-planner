@@ -3,13 +3,15 @@ import { connect, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { selectAuth } from '../../selectors/selectors';
+
 import { signOut } from '../../actions/authActions';
 
 import AuthenticatedLinks from './AuthenticatedLinks';
 import UnAuthenticatedLinks from './UnAuthenticatedLinks';
 
 const Navigation = ({ logout }) => {
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector(selectAuth);
   const { isAuthenticated } = auth;
 
   const handleLogout = () => {

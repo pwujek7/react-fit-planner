@@ -1,8 +1,39 @@
 import { createSelector } from 'reselect';
 
+export const selectAuth = state => state.auth;
+export const selectDays = state => state.days;
+
+export const selectDaysData = createSelector(
+  selectDays,
+  days => days.data
+);
+
 export const selectDayById = (dayId) => {
   return createSelector(
-    state => state.days.data,
+    selectDaysData,
     days => days.filter(day => day.id === dayId)
+  );
+};
+
+export const selectDayMeals = (dayId) => {
+  return createSelector(
+    selectDayById(dayId),
+    days => days[0].meals.map(meal => meal)
+  );
+};
+
+export const selectDayIngredients = (dayId) => {
+  return createSelector(
+    selectDayMeals(dayId),
+    days => days.flatMap(day => day.ingredients)
+  );
+};
+
+export const selectCurrentMacroAmount = (macroName, dayId) => {
+  return createSelector(
+    selectDayIngredients(dayId),
+    days => days
+      .map(day => +day[macroName])
+      .reduce((a, b) => a + b, 0)
   );
 };

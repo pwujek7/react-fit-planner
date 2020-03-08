@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { removeDay } from '../../actions/daysActions';
+import { selectDays } from '../../selectors/selectors';
 
 const formatDate = (date) => {
   const fromString = new Date(date);
@@ -11,7 +12,7 @@ const formatDate = (date) => {
 };
 
 const DayList = ({ data, remove }) => {
-  const days = useSelector(state => state.days);
+  const days = useSelector(selectDays);
   const { deleteDayError, deleteDayErrorMessage } = days;
 
   return (

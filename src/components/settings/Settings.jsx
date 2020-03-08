@@ -3,6 +3,8 @@ import { connect, useSelector } from 'react-redux';
 import { Form } from 'formik';
 import PropTypes from 'prop-types';
 
+import { selectAuth } from '../../selectors/selectors';
+
 import TextInput from '../common/TextInput';
 import SettingsForm from './SettingsForm';
 
@@ -12,7 +14,7 @@ import { newEmailValidation, newPasswordValidation } from '../../schema/validati
 const Settings = ({ newEmail, newPassword }) => {
   const [showEmail, setShowEmail] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector(selectAuth);
   const {
     user: { email },
     updateEmailError,

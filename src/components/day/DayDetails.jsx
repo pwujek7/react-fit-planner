@@ -2,15 +2,22 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { selectDayById } from '../../selectors/selectors';
+import { selectCurrentMacroAmount } from '../../selectors/selectors';
 
 const DayDetails = () => {
   const { dayId } = useParams();
-  const data = useSelector(selectDayById(dayId));
+  const proteins = useSelector(selectCurrentMacroAmount('proteins', dayId));
+  const carbs = useSelector(selectCurrentMacroAmount('carbs', dayId));
+  const fat = useSelector(selectCurrentMacroAmount('fat', dayId));
+  const calories = (proteins * 4) + (carbs * 4) + (fat * 9);
 
   return (
     <div>
-      {data[0].id}
+      <span>Calories: {calories}</span>
+      <br />
+      <span>
+        Proteins: {proteins} | Carbohydrates: {carbs} | Fat: {fat}
+      </span>
     </div>
   );
 };
