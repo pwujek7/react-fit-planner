@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { selectAuth } from '../../selectors/selectors';
 
 import TextInput from '../common/TextInput';
-import SettingsForm from './SettingsForm';
+import FormContainer from '../common/FormContainer';
 
 import { updateEmail, updatePassword } from '../../actions/authActions';
 import { newEmailValidation, newPasswordValidation } from '../../schema/validation';
@@ -39,26 +39,28 @@ const Settings = ({ newEmail, newPassword }) => {
         {
           showEmail
           && (
-            <SettingsForm
+            <FormContainer
               initialValues={{ email: '' }}
               schema={newEmailValidation}
-              updateFunction={newEmail}
+              submitFunction={newEmail}
             >
               {
                 () => (
-                  <Form>
-                    <br />
-                    <TextInput name="email" type="text" label="New e-mail:" validate />
-                    <br />
-                    <button type="submit">Change</button>
-                  </Form>
+                  <>
+                    <Form>
+                      <br />
+                      <TextInput name="email" type="text" label="New e-mail:" validate />
+                      <br />
+                      <button type="submit">Change</button>
+                    </Form>
+                    {
+                      updateEmailError && <span>{updateEmailErrorMessage}</span>
+                    }
+                  </>
                 )
               }
-            </SettingsForm>
+            </FormContainer>
           )
-        }
-        {
-          updateEmailError && <span>{updateEmailErrorMessage}</span>
         }
       </div>
       <div>
@@ -66,26 +68,28 @@ const Settings = ({ newEmail, newPassword }) => {
         {
           showPassword
           && (
-            <SettingsForm
+            <FormContainer
               initialValues={{ password: '' }}
               schema={newPasswordValidation}
-              updateFunction={newPassword}
+              submitFunction={newPassword}
             >
               {
                 () => (
-                  <Form>
-                    <br />
-                    <TextInput name="password" type="password" label="New password:" validate />
-                    <br />
-                    <button type="submit">Change</button>
-                  </Form>
+                  <>
+                    <Form>
+                      <br />
+                      <TextInput name="password" type="password" label="New password:" validate />
+                      <br />
+                      <button type="submit">Change</button>
+                    </Form>
+                    {
+                      updatePasswordError && <span>{updatePasswordErrorMessage}</span>
+                    }
+                  </>
                 )
               }
-            </SettingsForm>
+            </FormContainer>
           )
-        }
-        {
-          updatePasswordError && <span>{updatePasswordErrorMessage}</span>
         }
       </div>
     </div>
