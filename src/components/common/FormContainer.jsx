@@ -2,10 +2,10 @@ import React from 'react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 
-const SettingsForm = ({
+const FormContainer = ({
   initialValues,
   schema,
-  updateFunction,
+  submitFunction,
   children
 }) => {
   return (
@@ -13,7 +13,7 @@ const SettingsForm = ({
       initialValues={initialValues}
       validationSchema={schema}
       onSubmit={(values) => {
-        updateFunction(values);
+        submitFunction(values);
       }}
     >
       {
@@ -23,11 +23,11 @@ const SettingsForm = ({
   );
 };
 
-SettingsForm.propTypes = {
+FormContainer.propTypes = {
   initialValues: PropTypes.object.isRequired,
   schema: PropTypes.object.isRequired,
-  updateFunction: PropTypes.func.isRequired,
+  submitFunction: PropTypes.func.isRequired,
   children: PropTypes.elementType.isRequired
 };
 
-export default SettingsForm;
+export default FormContainer;
