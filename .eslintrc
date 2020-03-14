@@ -22,6 +22,7 @@
     "no-param-reassign": ["off", { "props": true, "ignorePropertyModificationsFor": ["draft"] }],
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "react/state-in-constructor" : "off"
   }
 }
