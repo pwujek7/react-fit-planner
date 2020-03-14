@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllDays } from '../../actions/daysActions';
 import { selectDays, selectDaysData } from '../../selectors/selectors';
 
+import ErrorBoundary from '../common/ErrorBoundary';
 import DayList from '../day/DayList';
 
 const Home = () => {
@@ -22,22 +23,24 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      {
-        fetchAllDaysError
-        && <span>{fetchAllDaysErrorMessage}</span>
-      }
+    <ErrorBoundary>
+      <div>
+        {
+          fetchAllDaysError
+          && <span>{fetchAllDaysErrorMessage}</span>
+        }
 
-      {
-        fetchAllDaysLoading
-        && <span>Loading...</span>
-      }
+        {
+          fetchAllDaysLoading
+          && <span>Loading...</span>
+        }
 
-      {
-        (daysData && !fetchAllDaysError && !fetchAllDaysLoading)
-        && <DayList data={daysData} />
-      }
-    </div>
+        {
+          (daysData && !fetchAllDaysError && !fetchAllDaysLoading)
+          && <DayList data={daysData} />
+        }
+      </div>
+    </ErrorBoundary>
   );
 };
 
