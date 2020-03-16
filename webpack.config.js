@@ -5,6 +5,10 @@ module.exports = {
   resolve: {
     extensions: ['.jsx', '.js']
   },
+  output: {
+    publicPath: '/',
+    chunkFilename: '[id].[hash].js'
+  },
   module: {
     rules: [
       {

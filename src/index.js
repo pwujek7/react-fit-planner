@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -12,37 +12,41 @@ import configureStore from './store/store';
 import { ROUTES } from './constants/routes';
 
 import Navigation from './components/navigation/Navigation';
-import Login from './components/login/Login';
-import Page404 from './components/page404/Page404';
 import PrivateRoute from './components/navigation/PrivateRoute';
-import Register from './components/register/Register';
+import LoadingIndicator from './components/common/LoadingIndicator';
+
+const Login = lazy(() => import('./components/login/Login'));
+const Register = lazy(() => import('./components/register/Register'));
+const Page404 = lazy(() => import('./components/page404/Page404'));
 
 const store = configureStore();
 
 const App = () => (
   <Router>
     <Navigation />
-    <Switch>
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/register">
-        <Register />
-      </Route>
-      {
-        ROUTES.map(route => (
-          <PrivateRoute
-            key={route.path}
-            exact={route.exact}
-            path={route.path}
-            component={route.component}
-          />
-        ))
-      }
-      <Route>
-        <Page404 />
-      </Route>
-    </Switch>
+    <Suspense fallback={<LoadingIndicator />}>
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+        {
+          ROUTES.map(route => (
+            <PrivateRoute
+              key={route.path}
+              exact={route.exact}
+              path={route.path}
+              component={route.component}
+            />
+          ))
+        }
+        <Route>
+          <Page404 />
+        </Route>
+      </Switch>
+    </Suspense>
   </Router>
 );
 
