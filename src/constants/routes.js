@@ -1,8 +1,9 @@
-import React from 'react';
-import Home from '../components/home/Home';
-import Settings from '../components/settings/Settings';
-import DayForm from '../components/day/DayForm';
-import DayDetails from '../components/day/DayDetails';
+import React, { lazy } from 'react';
+
+const Home = lazy(() => import('../components/home/Home'));
+const Settings = lazy(() => import('../components/settings/Settings'));
+const DayForm = lazy(() => import('../components/day/DayForm'));
+const DayDetails = lazy(() => import('../components/day/DayDetails'));
 
 export const ROUTES = [
   {

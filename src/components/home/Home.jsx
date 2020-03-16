@@ -6,6 +6,7 @@ import { selectDays, selectDaysData } from '../../selectors/selectors';
 
 import ErrorBoundary from '../common/ErrorBoundary';
 import DayList from '../day/DayList';
+import LoadingIndicator from '../common/LoadingIndicator';
 
 const Home = () => {
   const days = useSelector(selectDays);
@@ -32,7 +33,7 @@ const Home = () => {
 
         {
           fetchAllDaysLoading
-          && <span>Loading...</span>
+          && <LoadingIndicator />
         }
 
         {
