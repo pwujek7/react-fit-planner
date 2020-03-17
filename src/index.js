@@ -14,6 +14,8 @@ import { ROUTES } from './constants/routes';
 import Navigation from './components/navigation/Navigation';
 import PrivateRoute from './components/navigation/PrivateRoute';
 import LoadingIndicator from './components/common/LoadingIndicator';
+import Theme from './theme/Theme';
+import GlobalStyle from './theme/globalStyles';
 
 const Login = lazy(() => import('./components/login/Login'));
 const Register = lazy(() => import('./components/register/Register'));
@@ -22,32 +24,35 @@ const Page404 = lazy(() => import('./components/page404/Page404'));
 const store = configureStore();
 
 const App = () => (
-  <Router>
-    <Navigation />
-    <Suspense fallback={<LoadingIndicator />}>
-      <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        {
-          ROUTES.map(route => (
-            <PrivateRoute
-              key={route.path}
-              exact={route.exact}
-              path={route.path}
-              component={route.component}
-            />
-          ))
-        }
-        <Route>
-          <Page404 />
-        </Route>
-      </Switch>
-    </Suspense>
-  </Router>
+  <Theme>
+    <GlobalStyle />
+    <Router>
+      <Navigation />
+      <Suspense fallback={<LoadingIndicator />}>
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          {
+            ROUTES.map(route => (
+              <PrivateRoute
+                key={route.path}
+                exact={route.exact}
+                path={route.path}
+                component={route.component}
+              />
+            ))
+          }
+          <Route>
+            <Page404 />
+          </Route>
+        </Switch>
+      </Suspense>
+    </Router>
+  </Theme>
 );
 
 const ROOT = document.getElementById('root');
