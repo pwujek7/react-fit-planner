@@ -31,9 +31,7 @@ const Login = ({ login }) => {
             <>
               <Form>
                 <TextInput name="email" type="text" label="e-mail:" validate />
-                <br />
                 <TextInput name="password" type="password" label="password:" validate />
-                <br />
                 <button type="submit">Login</button>
               </Form>
               {
