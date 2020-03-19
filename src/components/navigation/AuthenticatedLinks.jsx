@@ -1,17 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const AuthenticatedLinks = () => {
+import { StyledNavItem } from './Navigation';
+
+const AuthenticatedLinks = ({ onClose }) => {
   return (
     <>
-      <li>
+      <StyledNavItem onClick={onClose}>
         <NavLink to="/settings">Settings</NavLink>
-      </li>
-      <li>
+      </StyledNavItem>
+      <StyledNavItem onClick={onClose}>
         <NavLink to="/day">Day</NavLink>
-      </li>
+      </StyledNavItem>
     </>
   );
+};
+
+AuthenticatedLinks.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
 
 export default AuthenticatedLinks;
