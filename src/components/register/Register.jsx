@@ -32,11 +32,8 @@ const Register = ({ register }) => {
             <>
               <Form>
                 <TextInput name="username" type="text" label="username:" validate />
-                <br />
                 <TextInput name="email" type="text" label="e-mail:" validate />
-                <br />
                 <TextInput name="password" type="password" label="password:" validate />
-                <br />
                 <button type="submit">Register</button>
               </Form>
               {
