@@ -7,6 +7,7 @@ import { selectAuth } from '../../selectors/selectors';
 
 import TextInput from '../common/TextInput';
 import FormContainer from '../common/FormContainer';
+import StyledAbsoluteContainer from '../common/styled/StyledAbsoluteContainer';
 
 import { signUp } from '../../actions/authActions';
 import { registerValidation } from '../../schema/validation';
@@ -16,7 +17,7 @@ const Register = ({ register }) => {
   const { signupError, signupErrorMessage } = auth;
 
   return (
-    <div>
+    <StyledAbsoluteContainer>
       <span>Register form</span>
       <FormContainer
         initialValues={{
@@ -43,7 +44,7 @@ const Register = ({ register }) => {
           )
         }
       </FormContainer>
-    </div>
+    </StyledAbsoluteContainer>
   );
 };
 
