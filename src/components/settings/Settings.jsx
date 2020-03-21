@@ -49,7 +49,7 @@ const Settings = ({ newEmail, newPassword }) => {
                   <>
                     <Form>
                       <br />
-                      <TextInput name="email" type="text" label="New e-mail:" validate />
+                      <TextInput id="emailID" name="email" type="text" label="New e-mail:" validate />
                       <br />
                       <button type="submit">Change</button>
                     </Form>
@@ -78,7 +78,7 @@ const Settings = ({ newEmail, newPassword }) => {
                   <>
                     <Form>
                       <br />
-                      <TextInput name="password" type="password" label="New password:" validate />
+                      <TextInput id="passwordID" name="password" type="password" label="New password:" validate />
                       <br />
                       <button type="submit">Change</button>
                     </Form>

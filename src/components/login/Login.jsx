@@ -30,8 +30,8 @@ const Login = ({ login }) => {
           () => (
             <>
               <Form>
-                <TextInput name="email" type="text" label="e-mail:" validate />
-                <TextInput name="password" type="password" label="password:" validate />
+                <TextInput id="emailID" name="email" type="text" label="e-mail:" validate />
+                <TextInput id="passwordID" name="password" type="password" label="password:" validate />
                 <button type="submit">Login</button>
               </Form>
               {
