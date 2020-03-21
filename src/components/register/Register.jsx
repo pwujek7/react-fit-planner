@@ -31,9 +31,9 @@ const Register = ({ register }) => {
           () => (
             <>
               <Form>
-                <TextInput name="username" type="text" label="username:" validate />
-                <TextInput name="email" type="text" label="e-mail:" validate />
-                <TextInput name="password" type="password" label="password:" validate />
+                <TextInput id="usernameID" name="username" type="text" label="username:" validate />
+                <TextInput id="emailID" name="email" type="text" label="e-mail:" validate />
+                <TextInput id="passwordID" name="password" type="password" label="password:" validate />
                 <button type="submit">Register</button>
               </Form>
               {
