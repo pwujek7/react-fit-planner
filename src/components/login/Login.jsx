@@ -7,6 +7,7 @@ import { selectAuth } from '../../selectors/selectors';
 
 import TextInput from '../common/TextInput';
 import FormContainer from '../common/FormContainer';
+import StyledAbsoluteContainer from '../common/styled/StyledAbsoluteContainer';
 
 import { signIn } from '../../actions/authActions';
 import { loginValidation } from '../../schema/validation';
@@ -16,7 +17,7 @@ const Login = ({ login }) => {
   const { loginError, loginErrorMessage } = auth;
 
   return (
-    <div>
+    <StyledAbsoluteContainer>
       <span>Login form</span>
       <FormContainer
         initialValues={{
@@ -41,7 +42,7 @@ const Login = ({ login }) => {
           )
         }
       </FormContainer>
-    </div>
+    </StyledAbsoluteContainer>
   );
 };
 

@@ -7,6 +7,7 @@ import { selectAuth } from '../../selectors/selectors';
 
 import TextInput from '../common/TextInput';
 import FormContainer from '../common/FormContainer';
+import StyledAbsoluteContainer from '../common/styled/StyledAbsoluteContainer';
 
 import { updateEmail, updatePassword } from '../../actions/authActions';
 import { newEmailValidation, newPasswordValidation } from '../../schema/validation';
@@ -32,7 +33,7 @@ const Settings = ({ newEmail, newPassword }) => {
   };
 
   return (
-    <div>
+    <StyledAbsoluteContainer>
       <p>Profile</p>
       <div>
         <span>e-mail: {email}</span><button type="button" onClick={handleShowEmail}>update</button>
@@ -92,7 +93,7 @@ const Settings = ({ newEmail, newPassword }) => {
           )
         }
       </div>
-    </div>
+    </StyledAbsoluteContainer>
   );
 };
 
