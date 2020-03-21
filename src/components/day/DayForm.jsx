@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 
 import FoodSection from './FoodSection';
 import TrainingSection from './TrainingSection';
+import CheckBoxInput from '../common/CheckBoxInput';
 
 import { createDay, updateDay } from '../../actions/daysActions';
 import { selectDays, selectDayById } from '../../selectors/selectors';
@@ -54,10 +55,12 @@ const DayForm = ({ create, update }) => {
               <br />
               <FoodSection id="meals" name="meals" meals={values.meals} />
               <br />
-              <div>
-                <span>Do you train today ?</span>
-                <Field type="checkbox" id="isTrainingDay" name="isTrainingDay" checked={values.isTrainingDay} />
-              </div>
+              <CheckBoxInput
+                id="isTrainingDay"
+                name="isTrainingDay"
+                value={values.isTrainingDay}
+                label="Do you train today ?"
+              />
               <br />
               {
                 values.isTrainingDay
