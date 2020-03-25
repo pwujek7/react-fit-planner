@@ -22,27 +22,27 @@ const StyledIngredientContainer = styled.div`
       grid-row: 1/2;
     }
 
-    & > input:nth-of-type(1) {
+    & > div:nth-of-type(1) {
       grid-column: 2/6;
       grid-row: 1/2;
     }
 
-    & > input:nth-of-type(2) {
+    & > div:nth-of-type(2) {
       grid-column: 6/9;
       grid-row: 1/2;
     }
 
-    & > input:nth-of-type(3) {
+    & > div:nth-of-type(3) {
       grid-column: 3/5;
       grid-row: 2/3;
     }
 
-    & > input:nth-of-type(4) {
+    & > div:nth-of-type(4) {
       grid-column: 5/7;
       grid-row: 2/3;
     }
 
-    & > input:nth-of-type(5) {
+    & > div:nth-of-type(5) {
       grid-column: 7/9;
       grid-row: 2/3;
     }
@@ -53,7 +53,7 @@ const StyledIngredientContainer = styled.div`
     }
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
     grid-template-columns: repeat(12, 50px);
 
     & > span {
@@ -61,27 +61,27 @@ const StyledIngredientContainer = styled.div`
       grid-row: 1/2;
     }
 
-    & > input:nth-of-type(1) {
+    & > div:nth-of-type(1) {
       grid-column: 2/5;
       grid-row: 1/2;
     }
 
-    & > input:nth-of-type(2) {
+    & > div:nth-of-type(2) {
       grid-column: 5/7;
       grid-row: 1/2;
     }
 
-    & > input:nth-of-type(3) {
+    & > div:nth-of-type(3) {
       grid-column: 7/9;
       grid-row: 1/2;
     }
 
-    & > input:nth-of-type(4) {
+    & > div:nth-of-type(4) {
       grid-column: 9/11;
       grid-row: 1/2;
     }
 
-    & > input:nth-of-type(5) {
+    & > div:nth-of-type(5) {
       grid-column: 11/13;
       grid-row: 1/2;
     }
@@ -122,11 +122,11 @@ const FoodSection = ({ id, name, meals }) => {
                                 <div key={ingredientIndex}>
                                   <StyledIngredientContainer>
                                     <span>{ingredientIndex + 1}</span>
-                                    <Field id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].name`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].name`} />
-                                    <Field id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].weight`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].weight`} />
-                                    <Field id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].proteins`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].proteins`} />
-                                    <Field id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].carbs`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].carbs`} />
-                                    <Field id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].fat`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].fat`} />
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].name`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].name`} type="text" />
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].weight`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].weight`} type="text" />
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].proteins`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].proteins`} type="text" />
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].carbs`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].carbs`} type="text" />
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].fat`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].fat`} type="text" />
                                     <button
                                       type="button"
                                       onClick={() => ingredientsHelpers.remove(ingredientIndex)}
