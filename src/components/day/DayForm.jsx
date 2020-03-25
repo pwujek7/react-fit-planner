@@ -20,11 +20,11 @@ const StyledDayFormContainer = styled.div`
   transform: translateX(-50%);
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    width: 260px;
+    width: 280px;
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
-    width: 520px;
+    width: 600px;
   }
 `;
 
@@ -43,6 +43,7 @@ const DayForm = ({ create, update }) => {
 
   return (
     <StyledDayFormContainer>
+      <p>Day Form</p>
       <Formik
         initialValues={initialValues}
         onSubmit={values => {
@@ -64,22 +65,17 @@ const DayForm = ({ create, update }) => {
           ({ values }) => (
             <>
               <Form>
-                <p>Day Form</p>
-                <br />
                 <FoodSection id="meals" name="meals" meals={values.meals} />
-                <br />
                 <CheckBoxInput
                   id="isTrainingDay"
                   name="isTrainingDay"
                   value={values.isTrainingDay}
                   label="Do you train today ?"
                 />
-                <br />
                 {
                   values.isTrainingDay
                   && <TrainingSection id="exercises" name="exercises" exercises={values.exercises} />
                 }
-                <br />
                 {
                   dayId
                   && (
