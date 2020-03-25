@@ -20,12 +20,12 @@ const StyledSetContainer = styled.div`
     grid-row: 1/2;
   }
 
-  & > input:nth-of-type(1) {
+  & > div:nth-of-type(1) {
     grid-column: 3/5;
     grid-row: 1/2;
   }
 
-  & > input:nth-of-type(2) {
+  & > div:nth-of-type(2) {
     grid-column: 5/7;
     grid-row: 1/2;
   }
@@ -65,8 +65,8 @@ const TrainingSection = ({ id, name, exercises }) => {
                                 <div key={setIndex}>
                                   <StyledSetContainer>
                                     <span>{setIndex + 1}</span>
-                                    <Field id={`${id}[${exerciseIndex}].sets[${setIndex}].reps`} name={`${name}[${exerciseIndex}].sets[${setIndex}].reps`} />
-                                    <Field id={`${id}[${exerciseIndex}].sets[${setIndex}].weight`} name={`${name}[${exerciseIndex}].sets[${setIndex}].weight`} />
+                                    <TextInput id={`${id}[${exerciseIndex}].sets[${setIndex}].reps`} name={`${name}[${exerciseIndex}].sets[${setIndex}].reps`} type="text" />
+                                    <TextInput id={`${id}[${exerciseIndex}].sets[${setIndex}].weight`} name={`${name}[${exerciseIndex}].sets[${setIndex}].weight`} />
                                     <button
                                       type="button"
                                       onClick={() => setsHelpers.remove(setIndex)}
