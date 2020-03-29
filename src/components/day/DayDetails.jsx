@@ -5,11 +5,12 @@ import styled from 'styled-components';
 
 import { selectCurrentMacroAmount } from '../../selectors/selectors';
 import StyledAbsoluteContainer from '../common/styled/StyledAbsoluteContainer';
+import ChartPie from '../charts/ChartPie';
+
+import { calculateCalories, calculateMacroPercentage } from '../../utilities/macro';
 
 const StyledDayDetailsContainer = styled(StyledAbsoluteContainer)`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    top: 75px;
-    transform: translate(-50%, 0%);
     width: 280px;
   }
 
@@ -27,7 +28,8 @@ const DayDetails = () => {
   const proteins = useSelector(selectCurrentMacroAmount('proteins', dayId));
   const carbs = useSelector(selectCurrentMacroAmount('carbs', dayId));
   const fat = useSelector(selectCurrentMacroAmount('fat', dayId));
-  const calories = (proteins * 4) + (carbs * 4) + (fat * 9);
+  const calories = calculateCalories(proteins, carbs, fat);
+  const chartData = calculateMacroPercentage(proteins, carbs, fat);
 
   return (
     <StyledDayDetailsContainer>
@@ -36,6 +38,10 @@ const DayDetails = () => {
       <span>
         Proteins: {proteins} | Carbohydrates: {carbs} | Fat: {fat}
       </span>
+      <br />
+      <br />
+      <br />
+      <ChartPie data={chartData} />
     </StyledDayDetailsContainer>
   );
 };
