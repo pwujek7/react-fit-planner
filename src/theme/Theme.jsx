@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
-const theme = {
+export const theme = {
   breakpoint: {
     s: '320px',
     m: '768px',
@@ -10,7 +10,13 @@ const theme = {
     xl: '1366px'
   },
   color: {
-
+    cyan: '#2bb7da',
+    darkBlue: '#2d314d',
+    gray: '#9698a6',
+    lightGray: '#f3f4f6',
+    limeGreen: '#31d35c',
+    veryLightGray: '#fafafa',
+    white: '#ffffff'
   },
   font: {
     size: {

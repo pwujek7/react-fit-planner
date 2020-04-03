@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { selectAuth } from '../../selectors/selectors';
-
 import { signOut } from '../../actions/authActions';
 
 import AuthenticatedLinks from './AuthenticatedLinks';
 import UnAuthenticatedLinks from './UnAuthenticatedLinks';
+
+import Icon from '../common/Icon';
+import { ICONS, COLORS } from '../../constants/icons';
 
 const StyledNavBar = styled.nav`
   position: relative;
@@ -19,6 +21,7 @@ const StyledNavBar = styled.nav`
 const StyledNavList = styled.ul`
   list-style-type: none;
   text-decoration: none;
+  position: relative;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     display: ${props => (props.isExpanded ? 'grid' : 'none')};
@@ -27,8 +30,8 @@ const StyledNavList = styled.ul`
     grid-gap: 20px;
     width: 100vw;
     height: 100vh;
-    padding: 50px 0 0 0;
-    background-color: #f5f5f5;
+    padding: 75px 20px 0 20px;
+    background-color: ${({ theme }) => theme.color.darkBlue};
     position: fixed;
     left: 0;
     top: 0;
@@ -49,7 +52,20 @@ export const StyledNavItem = styled.li`
   text-align: center;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    line-height: 100px;
+    & > a {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      text-decoration: none;
+      padding: 0 0 15px 0;
+    }
+
+    & > a:link, a:visited, a:hover, a:active {
+      color: ${({ theme }) => theme.color.veryLightGray}
+    }
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
@@ -67,8 +83,15 @@ const StyledNavLogo = styled(NavLink)`
   }
 `;
 
-const StyledNavToggle = styled.span`
+const StyledNavToggle = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 0;
     right: 0;
@@ -82,9 +105,27 @@ const StyledNavToggle = styled.span`
 
 const StyledNavLogout = styled.button`
   border: none;
-  background-color: transparent;
   outline: none;
   cursor: pointer;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    color: ${({ theme }) => theme.color.darkBlue};
+    background-color: ${({ theme }) => theme.color.veryLightGray};
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    & > svg {
+      height: 50px;
+    }
+  }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
     margin: 0 20px 0 0;
@@ -114,17 +155,28 @@ const Navigation = ({ logout }) => {
     && (
       <>
         <AuthenticatedLinks onClose={closeNavigation} />
-        <StyledNavLogout type="button" onClick={handleLogout}>Logout</StyledNavLogout>
+        <StyledNavLogout type="button" onClick={handleLogout}>
+          <Icon icon={ICONS.EXIT} size="32" color={COLORS.DARKBLUE} />
+        </StyledNavLogout>
       </>
     );
 
   return (
     <StyledNavBar>
-      <StyledNavToggle onClick={toggleNavigation}>Toggle</StyledNavToggle>
+      <StyledNavToggle onClick={toggleNavigation}>
+        {
+          isExpanded
+            ? <Icon icon={ICONS.CROSS} size="28" color={COLORS.VERYLIGHTGRAY} />
+            : <Icon icon={ICONS.MENU} size="32" color={COLORS.DARKBLUE} />
+        }
+      </StyledNavToggle>
       <StyledNavLogo exact to="/">Logo</StyledNavLogo>
       <StyledNavList isExpanded={isExpanded}>
         <StyledNavItem onClick={closeNavigation}>
-          <NavLink exact to="/">Home</NavLink>
+          <NavLink exact to="/">
+            <Icon icon={ICONS.HOME} size="32" color={COLORS.VERYLIGHTGRAY} />
+            Home
+          </NavLink>
         </StyledNavItem>
         {unAuthenticatedLinks}
         {authenticatedLinks}
