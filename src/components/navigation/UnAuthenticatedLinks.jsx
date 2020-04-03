@@ -3,15 +3,23 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { StyledNavItem } from './Navigation';
+import Icon from '../common/Icon';
+import { ICONS, COLORS } from '../../constants/icons';
 
 const UnAuthenticatedLinks = ({ onClose }) => {
   return (
     <>
       <StyledNavItem onClick={onClose}>
-        <NavLink to="/register">Register</NavLink>
+        <NavLink to="/register" activeClassName="active">
+          <Icon icon={ICONS.PLUS} size="32" color={COLORS.VERYLIGHTGRAY} />
+          Register
+        </NavLink>
       </StyledNavItem>
       <StyledNavItem onClick={onClose}>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/login" activeClassName="active">
+          <Icon icon={ICONS.ENTER} size="32" color={COLORS.VERYLIGHTGRAY} />
+          Login
+        </NavLink>
       </StyledNavItem>
     </>
   );
