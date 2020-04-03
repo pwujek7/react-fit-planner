@@ -11,6 +11,7 @@ import AuthenticatedLinks from './AuthenticatedLinks';
 import UnAuthenticatedLinks from './UnAuthenticatedLinks';
 
 import Icon from '../common/Icon';
+import Logo from '../common/Logo';
 import { ICONS, COLORS } from '../../constants/icons';
 
 const StyledNavBar = styled.nav`
@@ -36,6 +37,16 @@ const StyledNavList = styled.ul`
     left: 0;
     top: 0;
     z-index: 100;
+
+    &::before {
+      content: '';
+      width: 100%;
+      height: 50px;
+      background-color: ${({ theme }) => theme.color.veryLightGray};
+      position: absolute;
+      top: 0px;
+      left: 0;
+    }
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
@@ -46,6 +57,11 @@ const StyledNavList = styled.ul`
     padding: 0;
     position: relative;
     background-color: ${({ theme }) => theme.color.white};
+
+    &::before {
+      content: '';
+      display: none;
+    }
   }
 `;
 
@@ -100,9 +116,9 @@ export const StyledNavItem = styled.li`
 const StyledNavLogo = styled(NavLink)`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 90;
+    top: 1px;
+    left: 10px;
+    z-index: 110;
   }
 `;
 
@@ -214,11 +230,13 @@ const Navigation = ({ logout }) => {
       <StyledNavToggle onClick={toggleNavigation}>
         {
           isExpanded
-            ? <Icon icon={ICONS.CROSS} size="28" color={COLORS.VERYLIGHTGRAY} />
+            ? <Icon icon={ICONS.CROSS} size="28" color={COLORS.DARKBLUE} />
             : <Icon icon={ICONS.MENU} size="32" color={COLORS.DARKBLUE} />
         }
       </StyledNavToggle>
-      <StyledNavLogo exact to="/">Logo</StyledNavLogo>
+      <StyledNavLogo exact to="/">
+        <Logo isTextVisible={isExpanded} />
+      </StyledNavLogo>
       <StyledNavList isExpanded={isExpanded}>
         <StyledNavItem onClick={closeNavigation}>
           <NavLink exact to="/" activeClassName="active">

@@ -7,8 +7,8 @@ const StyledIcon = styled.svg`
   vertical-align: middle;
 `;
 
-const Icon = ({ icon, size, color }) => (
-  <StyledIcon width={size} height="100%" viewBox="0 0 32 32">
+const Icon = ({ icon, size, color, viewBox }) => (
+  <StyledIcon width={size} height="100%" viewBox={viewBox ? `${viewBox}` : '0 0 32 32'}>
     <path d={icon} fill={color}></path>
   </StyledIcon>
 );
@@ -16,7 +16,8 @@ const Icon = ({ icon, size, color }) => (
 Icon.propTypes = {
   icon: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired
+  color: PropTypes.string.isRequired,
+  viewBox: PropTypes.string
 };
 
 export default Icon;
