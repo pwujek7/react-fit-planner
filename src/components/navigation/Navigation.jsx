@@ -45,6 +45,7 @@ const StyledNavList = styled.ul`
     height: 50px;
     padding: 0;
     position: relative;
+    background-color: ${({ theme }) => theme.color.white};
   }
 `;
 
@@ -64,13 +65,35 @@ export const StyledNavItem = styled.li`
     }
 
     & > a:link, a:visited, a:hover, a:active {
-      color: ${({ theme }) => theme.color.veryLightGray}
+      color: ${({ theme }) => theme.color.veryLightGray};
     }
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
-    line-height: 50px;
-    margin: 0 20px 0 0;
+    & > a {
+      display: inline-block;
+      text-decoration: none;
+      height: 50px;
+      line-height: 50px;
+      padding: 0 32px 0 0;
+      color: ${({ theme }) => theme.color.gray};
+
+      &.active {
+        color: ${({ theme }) => theme.color.darkBlue} !important;
+      }
+    }
+
+    & > a:link, a:visited {
+      color: ${({ theme }) => theme.color.gray};
+    }
+
+    & > a:hover {
+      color: ${({ theme }) => theme.color.darkBlue};
+    }
+
+    & > svg {
+      display: none;
+    }
   }
 `;
 
@@ -128,7 +151,32 @@ const StyledNavLogout = styled.button`
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
-    margin: 0 20px 0 0;
+    display: inline-block;
+    text-decoration: none;
+    height: 50px;
+    line-height: 50px;
+    width: 100px;
+    position: relative;
+    color: ${({ theme }) => theme.color.gray};
+    background-color: ${({ theme }) => theme.color.veryLightGray};
+    transition: all .25s ease-in-out;
+
+    &::before {
+      content: 'Logout';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+      color: ${({ theme }) => theme.color.veryLightGray};
+      background-color: ${({ theme }) => theme.color.darkBlue};
+    }
+
+    & > svg {
+      display: none;
+    }
   }
 `;
 
@@ -173,7 +221,7 @@ const Navigation = ({ logout }) => {
       <StyledNavLogo exact to="/">Logo</StyledNavLogo>
       <StyledNavList isExpanded={isExpanded}>
         <StyledNavItem onClick={closeNavigation}>
-          <NavLink exact to="/">
+          <NavLink exact to="/" activeClassName="active">
             <Icon icon={ICONS.HOME} size="32" color={COLORS.VERYLIGHTGRAY} />
             Home
           </NavLink>

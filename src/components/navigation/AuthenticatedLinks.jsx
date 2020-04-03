@@ -10,13 +10,13 @@ const AuthenticatedLinks = ({ onClose }) => {
   return (
     <>
       <StyledNavItem onClick={onClose}>
-        <NavLink to="/settings">
+        <NavLink to="/settings" activeClassName="active">
           <Icon icon={ICONS.COG} size="32" color={COLORS.VERYLIGHTGRAY} />
           Settings
         </NavLink>
       </StyledNavItem>
       <StyledNavItem onClick={onClose}>
-        <NavLink to="/day">
+        <NavLink to="/day" activeClassName="active">
           <Icon icon={ICONS.CALENDAR} size="32" color={COLORS.VERYLIGHTGRAY} />
           Day
         </NavLink>
