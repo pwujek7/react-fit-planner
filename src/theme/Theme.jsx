@@ -12,10 +12,11 @@ export const theme = {
   color: {
     cyan: '#2bb7da',
     darkBlue: '#2d314d',
-    gray: '#9698a6',
-    lightGray: '#f3f4f6',
+    gray: '#abacb7',
+    lightGray: '#d5d5db',
     limeGreen: '#31d35c',
-    veryLightGray: '#fafafa',
+    red: '#ff5159',
+    veryLightGray: '#f4f4f6',
     white: '#ffffff'
   },
   font: {
