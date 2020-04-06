@@ -24,11 +24,14 @@ export const theme = {
       s: '0.875rem',
       m: '1rem',
       l: '1.125rem',
-      xl: '1.250rem'
+      xl: '1.250rem',
+      xxl: '1.5rem'
     },
     weight: {
+      thin: '100',
       normal: '400',
-      bold: '700',
+      medium: '500',
+      bold: '700'
     },
     family: {
       roboto: '"Roboto", sans-serif'

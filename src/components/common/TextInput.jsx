@@ -49,10 +49,10 @@ const StyledInputContainer = styled.div`
 `;
 
 const StyledInputErrorMessage = styled(StyledErrorMessage)`
-  margin: 0 0 0 10px;
+  margin: 3px 0 5px 10px;
 
   &:empty {
-    margin: 0;
+    margin: 0 0 10px 0;
   }
 `;
 
