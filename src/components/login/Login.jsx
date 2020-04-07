@@ -9,27 +9,16 @@ import { selectAuth } from '../../selectors/selectors';
 import TextInput from '../common/TextInput';
 import FormContainer from '../common/FormContainer';
 import StyledAbsoluteContainer from '../common/styled/StyledAbsoluteContainer';
+import StyledFormWrapper from '../common/styled/StyledFormWrapper';
 import StyledHeading from '../common/styled/StyledHeading';
 import StyledButton from '../common/styled/StyledButton';
+import StyledErrorMessage from '../common/styled/StyledErrorMessage';
+import StyledFormImagePanel from '../common/styled/StyledFormImagePanel';
 import Icon from '../common/Icon';
 
 import { signIn } from '../../actions/authActions';
 import { loginValidation } from '../../schema/validation';
 import { ICONS, COLORS } from '../../constants/icons';
-
-const StyledLoginContainer = styled.div`
-  border: 2px solid ${({ theme }) => theme.color.darkBlue};
-  background-color: ${({ theme }) => theme.color.white};
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    width: 280px;
-    padding: 30px 20px 40px 20px;
-  }
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.xl}) {
-    padding: 30px 20px 20px 20px;
-  }
-`;
 
 const StyledLoginHeading = styled(StyledHeading)`
   background-color: ${({ theme }) => theme.color.white};
@@ -62,29 +51,18 @@ const StyledLoginButton = styled(StyledButton)`
     position: relative;
     bottom: 0;
     right: 0;
-    margin: 15px 0 0 0;
+    margin: 15px 0;
   }
 `;
 
-const StyledLoginPanel = styled.div`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    display: none;
-  }
-
+const StyledLoginImagePanel = styled(StyledFormImagePanel)`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.xl}) {
-    display: block;
-    width: 280px;
-    height: 320px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(45, 49, 77, 0.85) 100%),
-      url('src/assets/images/img-login.jpg');
+    height: 330px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 60%, rgba(45, 49, 77, 0.85) 100%),
+      url('src/assets/images/img-login.jpg') 35% 50%;
     background-size: cover;
     background-repeat: no-repeat;
-    border: 2px solid ${({ theme }) => theme.color.darkBlue};
-    position: absolute;
-    top: 50%;
-    left: -140px;
-    transform: translateY(-50%);
-    z-index: -10;
+    left: -160px;
   }
 `;
 
@@ -94,7 +72,7 @@ const Login = ({ login }) => {
 
   return (
     <StyledAbsoluteContainer>
-      <StyledLoginContainer>
+      <StyledFormWrapper>
         <StyledLoginHeading>
           <Icon icon={ICONS.ENTER} size="24" color={COLORS.DARKBLUE} />
           Login
@@ -116,14 +94,15 @@ const Login = ({ login }) => {
                   <StyledLoginButton type="submit">Login</StyledLoginButton>
                 </Form>
                 {
-                  loginError && <span>{loginErrorMessage}</span>
+                  loginError
+                    && <StyledErrorMessage>{loginErrorMessage}</StyledErrorMessage>
                 }
               </>
             )
           }
         </FormContainer>
-      </StyledLoginContainer>
-      <StyledLoginPanel />
+      </StyledFormWrapper>
+      <StyledLoginImagePanel />
     </StyledAbsoluteContainer>
   );
 };
