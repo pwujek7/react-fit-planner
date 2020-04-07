@@ -67,6 +67,28 @@ const StyledRegisterButton = styled(StyledButton)`
   }
 `;
 
+const StyledRegisterPanel = styled.div`
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    display: none;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.xl}) {
+    display: block;
+    width: 280px;
+    height: 360px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(45, 49, 77, 0.85) 100%),
+      url('src/assets/images/img-register.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid ${({ theme }) => theme.color.darkBlue};
+    position: absolute;
+    top: 50%;
+    left: -180px;
+    transform: translateY(-50%);
+    z-index: -10;
+  }
+`;
+
 const Register = ({ register }) => {
   const auth = useSelector(selectAuth);
   const { signupError, signupErrorMessage } = auth;
@@ -104,6 +126,7 @@ const Register = ({ register }) => {
           }
         </FormContainer>
       </StyledRegisterContainer>
+      <StyledRegisterPanel />
     </StyledAbsoluteContainer>
   );
 };
