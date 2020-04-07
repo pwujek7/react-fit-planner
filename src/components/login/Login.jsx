@@ -26,7 +26,7 @@ const StyledLoginContainer = styled.div`
     padding: 30px 20px 40px 20px;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.xl}) {
     padding: 30px 20px 20px 20px;
   }
 `;
