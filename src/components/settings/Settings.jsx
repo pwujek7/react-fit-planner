@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect, useSelector } from 'react-redux';
 import { Form } from 'formik';
 import PropTypes from 'prop-types';
@@ -13,6 +13,7 @@ import StyledFormWrapper from '../common/styled/StyledFormWrapper';
 import StyledHeading from '../common/styled/StyledHeading';
 import StyledButton from '../common/styled/StyledButton';
 import StyledErrorMessage from '../common/styled/StyledErrorMessage';
+import StyledFormImagePanel from '../common/styled/StyledFormImagePanel';
 import Tabs from '../common/tabs/Tabs';
 import Icon from '../common/Icon';
 
@@ -33,6 +34,12 @@ const StyledSettingsHeading = styled(StyledHeading)`
     top: -12px;
     left: 20px;
   }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.xl}) {
+    top: -16px;
+    left: 120px;
+    width: 140px;
+  }
 `;
 
 const StyledSettingsButton = styled(StyledButton)`
@@ -40,6 +47,24 @@ const StyledSettingsButton = styled(StyledButton)`
     position: absolute;
     bottom: -20px;
     right: -20px;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.xl}) {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin: 15px 0;
+  }
+`;
+
+const StyledSettingsImagePanel = styled(StyledFormImagePanel)`
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.xl}) {
+    height: 320px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 60%, rgba(45, 49, 77, 0.85) 100%),
+      url('src/assets/images/img-settings.jpg') 0% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    left: -190px;
   }
 `;
 
@@ -106,6 +131,7 @@ const Settings = ({ newEmail, newPassword }) => {
           </div>
         </Tabs>
       </StyledFormWrapper>
+      <StyledSettingsImagePanel />
     </StyledAbsoluteContainer>
   );
 };
