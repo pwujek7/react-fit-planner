@@ -9,107 +9,103 @@ import { selectAuth } from '../../selectors/selectors';
 import TextInput from '../common/TextInput';
 import FormContainer from '../common/FormContainer';
 import StyledAbsoluteContainer from '../common/styled/StyledAbsoluteContainer';
+import StyledFormWrapper from '../common/styled/StyledFormWrapper';
+import StyledHeading from '../common/styled/StyledHeading';
+import StyledButton from '../common/styled/StyledButton';
+import StyledErrorMessage from '../common/styled/StyledErrorMessage';
+import Tabs from '../common/tabs/Tabs';
+import Icon from '../common/Icon';
 
 import { updateEmail, updatePassword } from '../../actions/authActions';
 import { newEmailValidation, newPasswordValidation } from '../../schema/validation';
+import { ICONS, COLORS } from '../../constants/icons';
 
-const StyledSettings = styled.div`
-  display: grid;
+const StyledSettingsHeading = styled(StyledHeading)`
+  background-color: ${({ theme }) => theme.color.white};
+  padding: 0 10px;
+  position: absolute;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    grid-template-columns: 1;
-    grid-template-rows: 2;
+  & > svg {
+    margin: 0 5px 0 0;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    top: -12px;
+    left: 20px;
+  }
+`;
+
+const StyledSettingsButton = styled(StyledButton)`
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
   }
 `;
 
 const Settings = ({ newEmail, newPassword }) => {
-  const [showEmail, setShowEmail] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const auth = useSelector(selectAuth);
   const {
-    user: { email },
     updateEmailError,
     updateEmailErrorMessage,
     updatePasswordError,
     updatePasswordErrorMessage
   } = auth;
 
-  const handleShowEmail = () => {
-    setShowEmail(!showEmail);
-  };
-
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
   return (
     <StyledAbsoluteContainer>
-      <p>Profile</p>
-      <StyledSettings>
-        <div>
-          <span>e-mail: {email}</span><button type="button" onClick={handleShowEmail}>update</button>
-          {
-            showEmail
-            && (
-              <FormContainer
-                initialValues={{ email: '' }}
-                schema={newEmailValidation}
-                submitFunction={newEmail}
-              >
-                {
-                  () => (
-                    <>
-                      <Form>
-                        <br />
-                        <TextInput id="emailID" name="email" type="text" label="New e-mail:" validate />
-                        <br />
-                        <button type="submit">Change</button>
-                      </Form>
-                      {
-                        updateEmailError && <span>{updateEmailErrorMessage}</span>
-                      }
-                    </>
-                  )
-                }
-              </FormContainer>
-            )
-          }
-        </div>
-        <div>
-          <span>password: *****</span><button type="button" onClick={handleShowPassword}>update</button>
-          {
-            showPassword
-            && (
-              <FormContainer
-                initialValues={{ password: '' }}
-                schema={newPasswordValidation}
-                submitFunction={newPassword}
-              >
-                {
-                  () => (
-                    <>
-                      <Form>
-                        <br />
-                        <TextInput id="passwordID" name="password" type="password" label="New password:" validate />
-                        <br />
-                        <button type="submit">Change</button>
-                      </Form>
-                      {
-                        updatePasswordError && <span>{updatePasswordErrorMessage}</span>
-                      }
-                    </>
-                  )
-                }
-              </FormContainer>
-            )
-          }
-        </div>
-      </StyledSettings>
+      <StyledFormWrapper>
+        <StyledSettingsHeading>
+          <Icon icon={ICONS.COG} size="24" color={COLORS.DARKBLUE} />
+          Settings
+        </StyledSettingsHeading>
+        <Tabs>
+          <div label="email">
+            <FormContainer
+              initialValues={{ email: '' }}
+              schema={newEmailValidation}
+              submitFunction={newEmail}
+            >
+              {
+                () => (
+                  <>
+                    <Form>
+                      <TextInput id="emailID" name="email" type="text" label="New e-mail:" validate />
+                      <StyledSettingsButton type="submit">Update</StyledSettingsButton>
+                    </Form>
+                    {
+                      updateEmailError
+                        && <StyledErrorMessage>{updateEmailErrorMessage}</StyledErrorMessage>
+                    }
+                  </>
+                )
+              }
+            </FormContainer>
+          </div>
+          <div label="password">
+            <FormContainer
+              initialValues={{ password: '' }}
+              schema={newPasswordValidation}
+              submitFunction={newPassword}
+            >
+              {
+                () => (
+                  <>
+                    <Form>
+                      <TextInput id="passwordID" name="password" type="password" label="New password:" validate />
+                      <StyledSettingsButton type="submit">Update</StyledSettingsButton>
+                    </Form>
+                    {
+                      updatePasswordError
+                        && <StyledErrorMessage>{updatePasswordErrorMessage}</StyledErrorMessage>
+                    }
+                  </>
+                )
+              }
+            </FormContainer>
+          </div>
+        </Tabs>
+      </StyledFormWrapper>
     </StyledAbsoluteContainer>
   );
 };
