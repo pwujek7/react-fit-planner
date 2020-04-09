@@ -1,7 +1,31 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Tab from './Tab';
+
+const StyledTabs = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledTabsList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  list-style-type: none;
+  width: 100%;
+  margin: 0 0 15px 0;
+`;
+
+const StyledTabsContent = styled.div`
+  width: 100%;
+`;
 
 const Tabs = ({ children }) => {
   const [activeTab, setActiveTab] = useState(children[0].props.label);
@@ -11,8 +35,8 @@ const Tabs = ({ children }) => {
   };
 
   return (
-    <div>
-      <ul>
+    <StyledTabs>
+      <StyledTabsList>
         {children.map((child) => {
           const { label } = child.props;
 
@@ -25,15 +49,15 @@ const Tabs = ({ children }) => {
             />
           );
         })}
-      </ul>
-      <div>
+      </StyledTabsList>
+      <StyledTabsContent>
         {
           children.map((child) => {
             return child.props.label !== activeTab ? undefined : child.props.children;
           })
         }
-      </div>
-    </div>
+      </StyledTabsContent>
+    </StyledTabs>
   );
 };
 
