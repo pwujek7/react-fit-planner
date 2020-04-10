@@ -1,8 +1,9 @@
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+import DayListItem from './DayListItem';
 
 import { removeDay } from '../../actions/daysActions';
 import { selectDays } from '../../selectors/selectors';
@@ -14,7 +15,8 @@ const StyledDayListContainer = styled.div`
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
-    margin: 20px;
+    margin: 40px;
+    padding: 0;
   }
 `;
 
@@ -38,56 +40,38 @@ const StyledDayList = styled.ul`
   }
 `;
 
-const StyledDayListItem = styled.li`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  & > span {
-    grid-column: 1/4;
-    grid-row: 1/2;
-  }
-`;
-
-const formatDate = (date) => {
-  const fromString = new Date(date);
-  return `${fromString.getDate()}-${(fromString.getMonth() + 1)}-${fromString.getFullYear()}`;
-};
-
-const DayList = ({ data, remove }) => {
+const DayList = ({ data }) => {
   const days = useSelector(selectDays);
+  const dispatch = useDispatch();
   const { deleteDayError, deleteDayErrorMessage } = days;
+
+  const handleDayDelete = (id) => {
+    dispatch(removeDay(id));
+  };
 
   return (
     <StyledDayListContainer>
       <StyledDayList>
         {
           data.map((day) => (
-            <StyledDayListItem key={day.id}>
-              <span>{formatDate(day.createdDate)}</span>
-              <Link to={`/${day.id}`}>podgląd</Link>
-              <Link to={`/day/${day.id}`}>edytuj</Link>
-              <button type="button" onClick={() => remove(day.id)}>usuń</button>
-            </StyledDayListItem>
+            <DayListItem
+              day={day}
+              onDelete={handleDayDelete}
+              key={day.id}
+            />
           ))
         }
       </StyledDayList>
       {
         deleteDayError
-        && <span>{deleteDayErrorMessage}</span>
+          && <span>{deleteDayErrorMessage}</span>
       }
     </StyledDayListContainer>
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    remove: (id) => dispatch(removeDay(id))
-  };
-};
-
 DayList.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  remove: PropTypes.func.isRequired
+  data: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-export default connect(null, mapDispatchToProps)(DayList);
+export default DayList;
