@@ -30,12 +30,12 @@ const StyledDayList = styled.ul`
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
     grid-template-columns: repeat(3, 1fr);
-    grid-row-gap: 20px;
-    grid-column-gap: 20px;
+    grid-row-gap: 40px;
+    grid-column-gap: 40px;
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 

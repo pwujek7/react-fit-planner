@@ -9,22 +9,12 @@ import StyledLink from '../common/styled/StyledLink';
 import { formatDate } from '../../utilities/date';
 import { ICONS, COLORS } from '../../constants/icons';
 
-const StyledDayListItem = styled.li`
-  display: grid;
-  border: 1px solid ${({ theme }) => theme.color.lightGray};
-  position: relative;
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    grid-template-columns: 30% 40% 30%;
-    height: 90px;
-  }
-`;
-
 const StyledDayItemDatePanel = styled.div`
   color: ${({ theme }) => theme.color.gray};
   background-color: ${({ theme }) => theme.color.white};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   position: absolute;
+  transition: all .25s ease-in-out;
 
   & span {
     display: block;
@@ -39,14 +29,61 @@ const StyledDayItemDatePanel = styled.div`
   }
 `;
 
+const StyledDayListItem = styled.li`
+  display: grid;
+  border: 1px solid ${({ theme }) => theme.color.lightGray};
+  position: relative;
+
+  &:hover ${StyledDayItemDatePanel} {
+    color: ${({ theme }) => theme.color.darkBlue};
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: 30% 40% 30%;
+    height: 90px;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
+    grid-template-columns: 10% 25% 65%;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
+    grid-template-columns: 30% 40% 30%;
+  }
+`;
+
 const StyledDayItemOptionPanel = styled.div`
-  grid-column: 2/3;
-  grid-row: 3/4;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: flex-start;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-column: 2/3;
+    grid-row: 3/4;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
+    grid-column: 3/4;
+    grid-row: 2/3;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
+    grid-column: 2/3;
+    grid-row: 3/4;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
 `;
 
 const StyledDayItemIconPanel = styled.div`
