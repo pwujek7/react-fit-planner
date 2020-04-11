@@ -1,4 +1,4 @@
-const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEPT', 'OCT', 'NOv', 'DEC'];
+const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC'];
 
 export const formatDate = (date) => {
   const fromString = new Date(date);
@@ -6,5 +6,5 @@ export const formatDate = (date) => {
   const month = MONTHS[fromString.getMonth()];
   const year = fromString.getFullYear();
 
-  return `${day} ${month} ${year}`;
+  return [day, month, year];
 };
