@@ -10,8 +10,7 @@ import { selectDays } from '../../selectors/selectors';
 
 const StyledDayListContainer = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    margin: 10px;
-    padding: 20px;
+    margin: 60px 40px 0 40px;
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
@@ -26,17 +25,17 @@ const StyledDayList = styled.ul`
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     grid-template-columns: repeat(1, 1fr);
-    grid-row-gap: 20px;
+    grid-row-gap: 50px;
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
     grid-template-columns: repeat(3, 1fr);
-    grid-row-gap: 20px;
-    grid-column-gap: 20px;
+    grid-row-gap: 40px;
+    grid-column-gap: 40px;
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 
