@@ -4,25 +4,48 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell,
-  Legend,
-  Tooltip
+  Cell
 } from 'recharts';
 
-const COLORS = ['#3399ff', '#ffd633', '#ff4d4d'];
+import { theme } from '../../theme/Theme';
+
+const COLORS = [
+  theme.color.chartBlue,
+  theme.color.chartYellow,
+  theme.color.chartRed
+];
+
+const renderCustomLabel = ({
+  cx, cy, midAngle, innerRadius, outerRadius, value, index
+}) => {
+  const RADIAN = Math.PI / 180;
+  const radius = 25 + innerRadius + (outerRadius - innerRadius);
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill={COLORS[index]}
+      textAnchor={x > cx ? 'start' : 'end'}
+    >
+      {value}%
+    </text>
+  );
+};
 
 const ChartPie = ({ data }) => (
-  <ResponsiveContainer width="100%" height={300}>
+  <ResponsiveContainer width="100%" height={280}>
     <PieChart>
       <Pie
         isAnimationActive={false}
         data={data}
         dataKey="value"
         outerRadius={80}
-        fill="#8884d8"
         cx="50%"
         cy="50%"
-        label
+        label={renderCustomLabel}
         labelLine
       >
         {
@@ -31,8 +54,6 @@ const ChartPie = ({ data }) => (
           ))
         }
       </Pie>
-      <Legend verticalAlign="top" height={36} />
-      <Tooltip />
     </PieChart>
   </ResponsiveContainer>
 );

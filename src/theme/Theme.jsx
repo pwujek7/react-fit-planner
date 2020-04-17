@@ -10,6 +10,9 @@ export const theme = {
     xl: '1366px'
   },
   color: {
+    chartBlue: '#00ABDA',
+    chartRed: '#C44F69',
+    chartYellow: '#F9F871',
     cyan: '#2bb7da',
     darkBlue: '#2d314d',
     gray: '#abacb7',
