@@ -28,7 +28,7 @@ export const FONTWEIGHT = {
 
 const StyledText = styled.span`
   color: ${props => props.fontColor};
-  border-bottom: 2px solid ${({ borderColor }) => borderColor || 'none'};
+  border-bottom: 3px solid ${({ borderColor }) => borderColor || 'none'};
   font-size: ${({ fontSize }) => fontSize};
   font-weight: ${({ fontWeight }) => fontWeight};
   line-height: ${({ fontSize }) => fontSize};

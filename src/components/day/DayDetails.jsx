@@ -22,10 +22,10 @@ import { ICONS, COLORS } from '../../constants/icons';
 const StyledDayDetailsContainer = styled(StyledAbsoluteContainer)`
   border: 1px solid ${({ theme }) => theme.color.lightGray};
   background-color: ${({ theme }) => theme.color.white};
-  padding: 20px 10px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     width: 320px;
+    padding: 20px 10px;
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
@@ -33,25 +33,15 @@ const StyledDayDetailsContainer = styled(StyledAbsoluteContainer)`
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
-    width: 520px;
-  }
-`;
-
-const StyledDayDetailsRow = styled.div`
-  margin: 10px 0 0 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    justify-content: space-between;
-    align-items: center;
+    width: 480px;
+    padding: 20px;
   }
 `;
 
 const StyledDayDetailsHeading = styled(StyledHeading)`
   color: ${({ theme }) => theme.color.lightGray};
   background-color: ${({ theme }) => theme.color.white};
+  font-weight: ${({ theme }) => theme.font.weight.normal};
   padding: 0 10px;
   position: absolute;
 
@@ -59,6 +49,63 @@ const StyledDayDetailsHeading = styled(StyledHeading)`
     font-size: ${({ theme }) => theme.font.size.m};
     top: -11px;
     right: 15px;
+  }
+`;
+
+const StyledDayDetailsText = styled(StyledText)`
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
+    display: block;
+    border-bottom: 1px solid ${({ theme }) => theme.color.veryLightGray};
+    padding: 0 0 10px 0;
+    margin: 0 0 10px 0;
+  }
+`;
+
+const StyledDayDetailsWrapper = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    flex-direction: column;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
+    flex-direction: row;
+  }
+`;
+
+const StyledDayDetailsRow = styled.div`
+  margin: 10px 0 0 0;
+  display: flex;
+  flex-wrap: nowrap;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+`;
+
+const StyledTextWrapper = styled.div`
+  margin: 10px 0 0 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    justify-content: flex-start;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.l}) {
+    width: 100%;
+    justify-content: space-between;
   }
 `;
 
@@ -97,68 +144,76 @@ const DayDetails = () => {
 
   return (
     <StyledDayDetailsContainer>
-      <StyledDayDetailsHeading>{dDay} - {month} - {year}</StyledDayDetailsHeading>
-      <StyledText
+      <StyledDayDetailsHeading>{dDay}-{month}-{year}</StyledDayDetailsHeading>
+      <StyledDayDetailsText
         fontColor={FONTCOLOR.DARKBLUE}
         fontSize={FONTSIZE.L}
         fontWeight={FONTWEIGHT.MEDIUM}
       >
         {calories} kcal
-      </StyledText>
-      <StyledDayDetailsRow>
-        <StyledText
-          fontColor={FONTCOLOR.GRAY}
-          fontSize={FONTSIZE.S}
-          fontWeight={FONTWEIGHT.NORMAL}
-        >
-          Proteins:
-          <StyledText
-            fontColor={FONTCOLOR.DARKBLUE}
-            borderColor={BORDERCOLOR.BLUE}
-            fontSize={FONTSIZE.L}
-            fontWeight={FONTWEIGHT.MEDIUM}
-            padding
-            margin
-          >
-            {proteins}g
-          </StyledText>
-        </StyledText>
-        <StyledText
-          fontColor={FONTCOLOR.GRAY}
-          fontSize={FONTSIZE.S}
-          fontWeight={FONTWEIGHT.NORMAL}
-        >
-          Fat:
-          <StyledText
-            fontColor={FONTCOLOR.DARKBLUE}
-            borderColor={BORDERCOLOR.RED}
-            fontSize={FONTSIZE.L}
-            fontWeight={FONTWEIGHT.MEDIUM}
-            padding
-            margin
-          >
-            {fat}g
-          </StyledText>
-        </StyledText>
-        <StyledText
-          fontColor={FONTCOLOR.GRAY}
-          fontSize={FONTSIZE.S}
-          fontWeight={FONTWEIGHT.NORMAL}
-        >
-          Carbs:
-          <StyledText
-            fontColor={FONTCOLOR.DARKBLUE}
-            borderColor={BORDERCOLOR.YELLOW}
-            fontSize={FONTSIZE.L}
-            fontWeight={FONTWEIGHT.MEDIUM}
-            padding
-            margin
-          >
-            {carbs}g
-          </StyledText>
-        </StyledText>
-      </StyledDayDetailsRow>
-      <ChartPie data={chartData} />
+      </StyledDayDetailsText>
+      <StyledDayDetailsWrapper>
+        <StyledDayDetailsRow>
+          <StyledTextWrapper>
+            <StyledText
+              fontColor={FONTCOLOR.GRAY}
+              fontSize={FONTSIZE.S}
+              fontWeight={FONTWEIGHT.NORMAL}
+            >
+              Proteins:
+            </StyledText>
+            <StyledText
+              fontColor={FONTCOLOR.DARKBLUE}
+              borderColor={BORDERCOLOR.BLUE}
+              fontSize={FONTSIZE.L}
+              fontWeight={FONTWEIGHT.MEDIUM}
+              padding
+              margin
+            >
+              {proteins}g
+            </StyledText>
+          </StyledTextWrapper>
+          <StyledTextWrapper>
+            <StyledText
+              fontColor={FONTCOLOR.GRAY}
+              fontSize={FONTSIZE.S}
+              fontWeight={FONTWEIGHT.NORMAL}
+            >
+              Fat:
+            </StyledText>
+            <StyledText
+              fontColor={FONTCOLOR.DARKBLUE}
+              borderColor={BORDERCOLOR.RED}
+              fontSize={FONTSIZE.L}
+              fontWeight={FONTWEIGHT.MEDIUM}
+              padding
+              margin
+            >
+              {fat}g
+            </StyledText>
+          </StyledTextWrapper>
+          <StyledTextWrapper>
+            <StyledText
+              fontColor={FONTCOLOR.GRAY}
+              fontSize={FONTSIZE.S}
+              fontWeight={FONTWEIGHT.NORMAL}
+            >
+              Carbs:
+            </StyledText>
+            <StyledText
+              fontColor={FONTCOLOR.DARKBLUE}
+              borderColor={BORDERCOLOR.YELLOW}
+              fontSize={FONTSIZE.L}
+              fontWeight={FONTWEIGHT.MEDIUM}
+              padding
+              margin
+            >
+              {carbs}g
+            </StyledText>
+          </StyledTextWrapper>
+        </StyledDayDetailsRow>
+        <ChartPie data={chartData} />
+      </StyledDayDetailsWrapper>
       <StyledDayDetailsOptionsPanel>
         <Icon
           onClick={handleReturn}

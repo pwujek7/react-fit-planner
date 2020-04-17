@@ -15,6 +15,26 @@ const COLORS = [
   theme.color.chartRed
 ];
 
+const renderCustomLabel = ({
+  cx, cy, midAngle, innerRadius, outerRadius, value, index
+}) => {
+  const RADIAN = Math.PI / 180;
+  const radius = 25 + innerRadius + (outerRadius - innerRadius);
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill={COLORS[index]}
+      textAnchor={x > cx ? 'start' : 'end'}
+    >
+      {value}%
+    </text>
+  );
+};
+
 const ChartPie = ({ data }) => (
   <ResponsiveContainer width="100%" height={280}>
     <PieChart>
@@ -23,10 +43,9 @@ const ChartPie = ({ data }) => (
         data={data}
         dataKey="value"
         outerRadius={80}
-        fill="#8884d8"
         cx="50%"
         cy="50%"
-        label
+        label={renderCustomLabel}
         labelLine
       >
         {
