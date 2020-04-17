@@ -4,15 +4,19 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell,
-  Legend,
-  Tooltip
+  Cell
 } from 'recharts';
 
-const COLORS = ['#3399ff', '#ffd633', '#ff4d4d'];
+import { theme } from '../../theme/Theme';
+
+const COLORS = [
+  theme.color.chartBlue,
+  theme.color.chartYellow,
+  theme.color.chartRed
+];
 
 const ChartPie = ({ data }) => (
-  <ResponsiveContainer width="100%" height={300}>
+  <ResponsiveContainer width="100%" height={280}>
     <PieChart>
       <Pie
         isAnimationActive={false}
@@ -31,8 +35,6 @@ const ChartPie = ({ data }) => (
           ))
         }
       </Pie>
-      <Legend verticalAlign="top" height={36} />
-      <Tooltip />
     </PieChart>
   </ResponsiveContainer>
 );
