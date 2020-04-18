@@ -29,7 +29,7 @@ const StyledDayFormContainer = styled.div`
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     width: 340px;
-    padding: 20px 10px;
+    padding: 10px;
     margin: 0 0 40px 0;
   }
 

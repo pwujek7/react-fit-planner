@@ -37,5 +37,7 @@ export const ICONS = {
 
 export const COLORS = {
   DARKBLUE: theme.color.darkBlue,
-  VERYLIGHTGRAY: theme.color.veryLightGray
+  LIGHTGRAY: theme.color.lightGray,
+  VERYLIGHTGRAY: theme.color.veryLightGray,
+  WHITE: theme.color.white
 };

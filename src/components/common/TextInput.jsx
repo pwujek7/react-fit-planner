@@ -29,7 +29,7 @@ const StyledInputContainer = styled.div`
 
   & > input:focus ~ label,
       input:not(:placeholder-shown) ~ label {
-    top: 5px;
+    top: 7px;
     left: 15px;
     color: ${({ theme }) => theme.color.gray};
   }
@@ -37,7 +37,7 @@ const StyledInputContainer = styled.div`
   & > label {
     color: ${({ theme }) => theme.color.lightGray};
     background-color: ${({ theme }) => theme.color.white};
-    font-size: ${({ theme }) => theme.font.size.s};
+    font-size: ${({ theme }) => theme.font.size.xs};
     padding: 0 4px;
     position: absolute;
     top: 50%;
