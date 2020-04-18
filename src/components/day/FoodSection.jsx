@@ -1,9 +1,17 @@
 import React from 'react';
-import { Field, FieldArray } from 'formik';
+import { FieldArray } from 'formik';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import TextInput from '../common/TextInput';
+import Icon from '../common/Icon';
+import StyledText,
+{
+  FONTCOLOR, FONTSIZE, FONTWEIGHT
+} from '../common/styled/StyledText';
+import StyledButton from '../common/styled/StyledButton';
+
+import { ICONS, COLORS } from '../../constants/icons';
 
 const StyledFoodSection = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
@@ -13,13 +21,17 @@ const StyledFoodSection = styled.div`
 
 const StyledIngredientContainer = styled.div`
   display: grid;
+  border-bottom: 1px solid ${({ theme }) => theme.color.veryLightGray};
+  padding: 5px 0 10px 0;
+  margin: 0 0 10px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    grid-template-columns: repeat(8, 35px);
+    grid-template-columns: repeat(8, 39.5px);
 
     & > span {
-      grid-column: 1/3;
+      grid-column: 1/2;
       grid-row: 1/2;
+      align-self: end;
     }
 
     & > div:nth-of-type(1) {
@@ -33,23 +45,23 @@ const StyledIngredientContainer = styled.div`
     }
 
     & > div:nth-of-type(3) {
-      grid-column: 3/5;
+      grid-column: 1/4;
       grid-row: 2/3;
     }
 
     & > div:nth-of-type(4) {
-      grid-column: 5/7;
+      grid-column: 4/6;
       grid-row: 2/3;
     }
 
     & > div:nth-of-type(5) {
-      grid-column: 7/9;
+      grid-column: 6/8;
       grid-row: 2/3;
     }
 
-    & > button {
-      grid-column: 5/9;
-      grid-row: 3/4;
+    & > button:nth-of-type(1) {
+      grid-column: 8/9;
+      grid-row: 2/3;
     }
   }
 
@@ -93,6 +105,69 @@ const StyledIngredientContainer = styled.div`
   }
 `;
 
+const StyledIngredientText = styled(StyledText)`
+  display: block;
+  padding: 5px 0 5px 0;
+  text-align: right;
+`;
+
+const StyledButtonDelete = styled(StyledButton)`
+  background-color: ${({ theme }) => theme.color.white};
+  border: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+
+  &:hover,
+  &:active {
+    background-color: ${({ theme }) => theme.color.white};
+    border: none;
+
+    & > svg path {
+      fill: ${({ theme }) => theme.color.red};
+    }
+  }
+`;
+
+const StyledButtonAdd = styled(StyledButton)`
+  background-color: ${({ theme }) => theme.color.lightGray};
+  border: none;
+  padding: 2px 5px 5px 5px;
+  margin: 0 0 0 5px;
+
+  &:hover,
+  &:active {
+    background-color: ${({ theme }) => theme.color.limeGreen};
+    border: none;
+  }
+`;
+
+const StyledMealBar = styled.div`
+  display: grid;
+  border-bottom: 1px solid ${({ theme }) => theme.color.lightGray};
+  margin: 0 0 5px 0;
+  padding: 0 0 10px 0;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(8, 39.5px);
+
+    ${StyledText} {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      align-self: end;
+    }
+
+    & > div:nth-of-type(1) {
+      grid-column: 2/8;
+      grid-row: 1/2;
+    }
+
+    ${StyledButtonDelete} {
+      grid-column: 8/9;
+      grid-row: 1/2;
+    }
+  }
+`;
+
 const FoodSection = ({ id, name, meals }) => {
   return (
     <StyledFoodSection>
@@ -102,70 +177,82 @@ const FoodSection = ({ id, name, meals }) => {
         render={mealsHelpers => {
           return (
             <>
+              <StyledIngredientText fontColor={FONTCOLOR.GRAY} fontSize={FONTSIZE.S} fontWeight={FONTWEIGHT.NORMAL}>
+                Meals
+                <StyledButtonAdd
+                  type="button"
+                  onClick={() => mealsHelpers.push({
+                    name: '', ingredients: []
+                  })}
+                >
+                  <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />
+                </StyledButtonAdd>
+              </StyledIngredientText>
               {
                 meals
                 && meals.length > 0
                 && meals.map((meal, mealIndex) => (
                   <div key={mealIndex}>
-                    <TextInput id={`${name}[${mealIndex}].name`} name={`${name}[${mealIndex}].name`} type="text" label={`Meal ${mealIndex + 1}`} />
+                    <StyledMealBar>
+                      <StyledText fontColor={FONTCOLOR.LIGHTGRAY} fontSize={FONTSIZE.S} fontWeight={FONTWEIGHT.NORMAL}>
+                        {mealIndex + 1}
+                      </StyledText>
+                      <TextInput id={`${name}[${mealIndex}].name`} name={`${name}[${mealIndex}].name`} type="text" label="Meal name" />
+                      <StyledButtonDelete
+                        type="button"
+                        onClick={() => mealsHelpers.remove(mealIndex)}
+                      >
+                        <Icon icon={ICONS.BIN} size="20" color={COLORS.LIGHTGRAY} />
+                      </StyledButtonDelete>
+                    </StyledMealBar>
                     <FieldArray
                       id={`${id}[${mealIndex}].ingredients`}
                       name={`${name}[${mealIndex}].ingredients`}
                       render={ingredientsHelpers => {
                         return (
                           <>
-                            <span>Ingredients</span>
+                            <StyledIngredientText fontColor={FONTCOLOR.GRAY} fontSize={FONTSIZE.S} fontWeight={FONTWEIGHT.NORMAL}>
+                              Ingredients
+                              <StyledButtonAdd
+                                type="button"
+                                onClick={() => ingredientsHelpers.push({
+                                  name: '', weight: '', proteins: '', carbs: '', fat: ''
+                                })}
+                              >
+                                <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />
+                              </StyledButtonAdd>
+                            </StyledIngredientText>
                             {
                               meals[mealIndex].ingredients
                               && meals[mealIndex].ingredients.length > 0
                               && meals[mealIndex].ingredients.map((ingredient, ingredientIndex) => (
                                 <div key={ingredientIndex}>
                                   <StyledIngredientContainer>
-                                    <span>{ingredientIndex + 1}</span>
-                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].name`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].name`} type="text" />
-                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].weight`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].weight`} type="text" />
-                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].proteins`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].proteins`} type="text" />
-                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].carbs`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].carbs`} type="text" />
-                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].fat`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].fat`} type="text" />
-                                    <button
+                                    <StyledText fontColor={FONTCOLOR.LIGHTGRAY} fontSize={FONTSIZE.S} fontWeight={FONTWEIGHT.NORMAL}>
+                                      {`${mealIndex + 1}.${ingredientIndex + 1}`}
+                                    </StyledText>
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].name`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].name`} label="Name" type="text" />
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].weight`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].weight`} label="Weight [g]" type="text" />
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].proteins`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].proteins`} label="Proteins [g]" type="text" />
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].carbs`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].carbs`} label="Carbs [g]" type="text" />
+                                    <TextInput id={`${id}[${mealIndex}].ingredients[${ingredientIndex}].fat`} name={`${name}[${mealIndex}].ingredients[${ingredientIndex}].fat`} label="Fat [g]" type="text" />
+                                    <StyledButtonDelete
                                       type="button"
                                       onClick={() => ingredientsHelpers.remove(ingredientIndex)}
                                     >
-                                      Delete ingredient
-                                    </button>
+                                      <Icon icon={ICONS.BIN} size="20" color={COLORS.LIGHTGRAY} />
+                                    </StyledButtonDelete>
                                   </StyledIngredientContainer>
                                 </div>
                               ))
                             }
-                            <button
-                              type="button"
-                              onClick={() => ingredientsHelpers.push({
-                                name: '', weight: '', proteins: '', carbs: '', fat: ''
-                              })}
-                            >
-                              Add ingredient
-                            </button>
                           </>
                         );
                       }}
                     />
-                    <button
-                      type="button"
-                      onClick={() => mealsHelpers.remove(mealIndex)}
-                    >
-                      Delete meal
-                    </button>
                   </div>
                 ))
               }
-              <button
-                type="button"
-                onClick={() => mealsHelpers.push({
-                  name: '', ingredients: []
-                })}
-              >
-                Add meal
-              </button>
             </>
           );
         }}

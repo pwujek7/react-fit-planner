@@ -8,19 +8,29 @@ import styled from 'styled-components';
 import FoodSection from './FoodSection';
 import TrainingSection from './TrainingSection';
 import CheckBoxInput from '../common/CheckBoxInput';
+import StyledHeading from '../common/styled/StyledHeading';
+import StyledButton from '../common/styled/StyledButton';
+import StyledErrorMessage from '../common/styled/StyledErrorMessage';
+import Icon from '../common/Icon';
 
 import { createDay, updateDay } from '../../actions/daysActions';
 import { selectDays, selectDayById } from '../../selectors/selectors';
 import { emptyValues } from '../../constants/emptyValues';
+import { formatDate } from '../../utilities/date';
+import { ICONS, COLORS } from '../../constants/icons';
 
 const StyledDayFormContainer = styled.div`
+  border: 2px solid ${({ theme }) => theme.color.darkBlue};
+  background-color: ${({ theme }) => theme.color.white};
   position: absolute;
   top: 90px;
   left: 50%;
   transform: translateX(-50%);
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    width: 280px;
+    width: 340px;
+    padding: 10px;
+    margin: 0 0 40px 0;
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
@@ -28,12 +38,38 @@ const StyledDayFormContainer = styled.div`
   }
 `;
 
+const StyledDayFormHeading = styled(StyledHeading)`
+  background-color: ${({ theme }) => theme.color.white};
+  padding: 0 10px;
+  position: absolute;
+
+  & > svg {
+    margin: 0 5px 0 0;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    top: -15px;
+    right: 20px;
+  }
+`;
+
+const StyledDayFormSubmit = styled(StyledButton)`
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+  }
+`;
+
 const DayForm = ({ create, update }) => {
   const { dayId } = useParams();
   const days = useSelector(selectDays);
   const dayValues = useSelector(selectDayById(dayId));
+  const { createdDate } = dayValues[0] || {};
+  const [dDay, month, year] = formatDate(createdDate);
   const isEditMode = dayId !== undefined;
   const initialValues = isEditMode ? dayValues[0] : emptyValues;
+  const headingCopy = isEditMode ? `${dDay}-${month}-${year}` : 'New day';
   const {
     postDayError,
     postDayErrorMessage,
@@ -43,7 +79,10 @@ const DayForm = ({ create, update }) => {
 
   return (
     <StyledDayFormContainer>
-      <p>Day Form</p>
+      <StyledDayFormHeading>
+        <Icon icon={ICONS.CALENDAR} size="24" color={COLORS.DARKBLUE} />
+        {headingCopy}
+      </StyledDayFormHeading>
       <Formik
         initialValues={initialValues}
         onSubmit={values => {
@@ -74,24 +113,26 @@ const DayForm = ({ create, update }) => {
                 />
                 {
                   values.isTrainingDay
-                  && <TrainingSection id="exercises" name="exercises" exercises={values.exercises} />
+                    && <TrainingSection id="exercises" name="exercises" exercises={values.exercises} />
                 }
                 {
                   dayId
-                  && (
-                    <>
-                      <Field type="hidden" name="id" id="id" />
-                      <Field type="hidden" name="createdDate" id="createdDate" />
-                    </>
-                  )
+                    && (
+                      <>
+                        <Field type="hidden" name="id" id="id" />
+                        <Field type="hidden" name="createdDate" id="createdDate" />
+                      </>
+                    )
                 }
-                <button type="submit">submit</button>
+                <StyledDayFormSubmit type="submit">Submit</StyledDayFormSubmit>
               </Form>
               {
-                postDayError && <p>{postDayErrorMessage}</p>
+                postDayError
+                  && <StyledErrorMessage>{postDayErrorMessage}</StyledErrorMessage>
               }
               {
-                editDayError && <p>{editDayErrorMessage}</p>
+                editDayError
+                  && <StyledErrorMessage>{editDayErrorMessage}</StyledErrorMessage>
               }
             </>
           )
