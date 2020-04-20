@@ -34,7 +34,7 @@ const StyledDayFormContainer = styled.div`
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
-    width: 600px;
+    width: 620px;
   }
 `;
 
@@ -51,13 +51,22 @@ const StyledDayFormHeading = styled(StyledHeading)`
     top: -15px;
     right: 20px;
   }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
+    right: 410px;
+  }
 `;
 
 const StyledDayFormSubmit = styled(StyledButton)`
+  position: absolute;
+
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    position: absolute;
     bottom: -20px;
     right: -10px;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
+    right: -20px;
   }
 `;
 
