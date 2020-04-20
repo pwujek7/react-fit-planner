@@ -3,21 +3,20 @@ import { FieldArray } from 'formik';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import StyledDayFormSection from './StyledDayFormSection';
+import StyledDayFormSectionHeading from './StyledDayFormSectionHeading';
+import StyledDayFormBtnAdd from './StyledDayFormBtnAdd';
+import StyledDayFormBtnDelete from './StyledDayFormBtnDelete';
+import StyledDayFormGridBar from './StyledDayFormGridBar';
+
 import TextInput from '../common/TextInput';
 import Icon from '../common/Icon';
 import StyledText,
 {
   FONTCOLOR, FONTSIZE, FONTWEIGHT
 } from '../common/styled/StyledText';
-import StyledButton from '../common/styled/StyledButton';
 
 import { ICONS, COLORS } from '../../constants/icons';
-
-const StyledTrainingSection = styled.div`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    margin: 0 0 20px 0;
-  }
-`;
 
 const StyledSetContainer = styled.div`
   display: grid;
@@ -79,48 +78,7 @@ const StyledSetContainer = styled.div`
   }
 `;
 
-const StyledExerciseText = styled(StyledText)`
-  display: block;
-  padding: 5px 0 5px 0;
-  text-align: right;
-`;
-
-const StyledButtonDelete = styled(StyledButton)`
-  background-color: ${({ theme }) => theme.color.white};
-  border: none;
-  padding: 0;
-  margin: 5px 0 0 0;
-
-  &:hover,
-  &:active {
-    background-color: ${({ theme }) => theme.color.white};
-    border: none;
-
-    & > svg path {
-      fill: ${({ theme }) => theme.color.red};
-    }
-  }
-`;
-
-const StyledButtonAdd = styled(StyledButton)`
-  background-color: ${({ theme }) => theme.color.lightGray};
-  border: none;
-  padding: 2px 5px 5px 5px;
-  margin: 0 0 0 5px;
-
-  &:hover,
-  &:active {
-    background-color: ${({ theme }) => theme.color.limeGreen};
-    border: none;
-  }
-`;
-
-const StyledExerciseBar = styled.div`
-  display: grid;
-  border-bottom: 1px dotted ${({ theme }) => theme.color.lightGray};
-  margin: 0 0 5px 0;
-  padding: 0 0 10px 0;
-
+const StyledDayFormBar = styled(StyledDayFormGridBar)`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     grid-template-columns: repeat(8, 39.5px);
 
@@ -135,7 +93,7 @@ const StyledExerciseBar = styled.div`
       grid-row: 1/2;
     }
 
-    ${StyledButtonDelete} {
+    ${StyledDayFormBtnDelete} {
       grid-column: 8/9;
       grid-row: 1/2;
     }
@@ -155,7 +113,7 @@ const StyledExerciseBar = styled.div`
       grid-row: 1/2;
     }
 
-    ${StyledButtonDelete} {
+    ${StyledDayFormBtnDelete} {
       grid-column: 12/13;
       grid-row: 1/2;
     }
@@ -164,74 +122,90 @@ const StyledExerciseBar = styled.div`
 
 const TrainingSection = ({ id, name, exercises }) => {
   return (
-    <StyledTrainingSection>
+    <StyledDayFormSection>
       <FieldArray
         id={id}
         name={name}
         render={exercisesHelpers => {
           return (
             <>
-              <StyledExerciseText fontColor={FONTCOLOR.GRAY} fontSize={FONTSIZE.S} fontWeight={FONTWEIGHT.NORMAL}>
+              <StyledDayFormSectionHeading
+                fontColor={FONTCOLOR.GRAY}
+                fontSize={FONTSIZE.S}
+                fontWeight={FONTWEIGHT.NORMAL}
+              >
                 Exercises
-                <StyledButtonAdd
+                <StyledDayFormBtnAdd
                   type="button"
                   onClick={() => exercisesHelpers.push({
                     name: '', sets: []
                   })}
                 >
                   <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />
-                </StyledButtonAdd>
-              </StyledExerciseText>
+                </StyledDayFormBtnAdd>
+              </StyledDayFormSectionHeading>
               {
                 exercises
                 && exercises.length > 0
                 && exercises.map((exercise, exerciseIndex) => (
                   <div key={exerciseIndex}>
-                    <StyledExerciseBar>
-                      <StyledText fontColor={FONTCOLOR.GRAY} fontSize={FONTSIZE.S} fontWeight={FONTWEIGHT.NORMAL}>
+                    <StyledDayFormBar>
+                      <StyledText
+                        fontColor={FONTCOLOR.GRAY}
+                        fontSize={FONTSIZE.S}
+                        fontWeight={FONTWEIGHT.NORMAL}
+                      >
                         {exerciseIndex + 1}
                       </StyledText>
                       <TextInput id={`${name}[${exerciseIndex}].name`} name={`${name}[${exerciseIndex}].name`} type="text" label="Exercise name" />
-                      <StyledButtonDelete
+                      <StyledDayFormBtnDelete
                         type="button"
                         onClick={() => exercisesHelpers.remove(exerciseIndex)}
                       >
                         <Icon icon={ICONS.BIN} size="20" color={COLORS.LIGHTGRAY} />
-                      </StyledButtonDelete>
-                    </StyledExerciseBar>
+                      </StyledDayFormBtnDelete>
+                    </StyledDayFormBar>
                     <FieldArray
                       id={`${id}[${exerciseIndex}].sets`}
                       name={`${name}[${exerciseIndex}].sets`}
                       render={setsHelpers => {
                         return (
                           <>
-                            <StyledExerciseText fontColor={FONTCOLOR.GRAY} fontSize={FONTSIZE.S} fontWeight={FONTWEIGHT.NORMAL}>
+                            <StyledDayFormSectionHeading
+                              fontColor={FONTCOLOR.GRAY}
+                              fontSize={FONTSIZE.S}
+                              fontWeight={FONTWEIGHT.NORMAL}
+                            >
                               Sets
-                              <StyledButtonAdd
+                              <StyledDayFormBtnAdd
                                 type="button"
                                 onClick={() => setsHelpers.push({
                                   reps: '', weight: ''
                                 })}
                               >
                                 <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />
-                              </StyledButtonAdd>
-                            </StyledExerciseText>
+                              </StyledDayFormBtnAdd>
+                            </StyledDayFormSectionHeading>
                             {
                               exercises[exerciseIndex].sets
                               && exercises[exerciseIndex].sets.length > 0
                               && exercises[exerciseIndex].sets.map((set, setIndex) => (
                                 <StyledSetContainer key={setIndex}>
-                                  <StyledText fontColor={FONTCOLOR.LIGHTGRAY} fontSize={FONTSIZE.S} fontWeight={FONTWEIGHT.NORMAL}>
+                                  <StyledText
+                                    fontColor={FONTCOLOR.LIGHTGRAY}
+                                    fontSize={FONTSIZE.S}
+                                    fontWeight={FONTWEIGHT.NORMAL}
+                                  >
                                     {`${exerciseIndex + 1}.${setIndex + 1}`}
                                   </StyledText>
                                   <TextInput id={`${id}[${exerciseIndex}].sets[${setIndex}].reps`} name={`${name}[${exerciseIndex}].sets[${setIndex}].reps`} label="Reps" type="text" />
                                   <TextInput id={`${id}[${exerciseIndex}].sets[${setIndex}].weight`} name={`${name}[${exerciseIndex}].sets[${setIndex}].weight`} label="Weight" />
-                                  <StyledButtonDelete
+                                  <StyledDayFormBtnDelete
                                     type="button"
                                     onClick={() => setsHelpers.remove(setIndex)}
                                   >
                                     <Icon icon={ICONS.BIN} size="20" color={COLORS.LIGHTGRAY} />
-                                  </StyledButtonDelete>
+                                  </StyledDayFormBtnDelete>
                                 </StyledSetContainer>
                               ))
                             }
@@ -246,7 +220,7 @@ const TrainingSection = ({ id, name, exercises }) => {
           );
         }}
       />
-    </StyledTrainingSection>
+    </StyledDayFormSection>
   );
 };
 
