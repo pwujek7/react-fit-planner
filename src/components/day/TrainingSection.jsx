@@ -21,9 +21,10 @@ const StyledTrainingSection = styled.div`
 
 const StyledSetContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(8, 39.5px);
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    grid-template-columns: repeat(8, 39.5px);
+
     &:last-of-type {
       border-bottom: 1px solid ${({ theme }) => theme.color.lightGray};
       padding: 0 0 10px 0;
@@ -48,6 +49,31 @@ const StyledSetContainer = styled.div`
 
     & > button {
       grid-column: 8/9;
+      grid-row: 1/2;
+    }
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
+    grid-template-columns: repeat(12, 50px);
+
+    & > span {
+      grid-column: 7/8;
+      grid-row: 1/2;
+      align-self: end;
+    }
+
+    & > div:nth-of-type(1) {
+      grid-column: 8/10;
+      grid-row: 1/2;
+    }
+
+    & > div:nth-of-type(2) {
+      grid-column: 10/12;
+      grid-row: 1/2;
+    }
+
+    & > button {
+      grid-column: 12/13;
       grid-row: 1/2;
     }
   }
@@ -91,7 +117,7 @@ const StyledButtonAdd = styled(StyledButton)`
 
 const StyledExerciseBar = styled.div`
   display: grid;
-  border-bottom: 1px solid ${({ theme }) => theme.color.veryLightGray};
+  border-bottom: 1px dotted ${({ theme }) => theme.color.lightGray};
   margin: 0 0 5px 0;
   padding: 0 0 10px 0;
 
@@ -111,6 +137,26 @@ const StyledExerciseBar = styled.div`
 
     ${StyledButtonDelete} {
       grid-column: 8/9;
+      grid-row: 1/2;
+    }
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
+    grid-template-columns: repeat(12, 50px);
+
+    ${StyledText} {
+      grid-column: 5/6;
+      grid-row: 1/2;
+      align-self: end;
+    }
+
+    & > div:nth-of-type(1) {
+      grid-column: 6/12;
+      grid-row: 1/2;
+    }
+
+    ${StyledButtonDelete} {
+      grid-column: 12/13;
       grid-row: 1/2;
     }
   }

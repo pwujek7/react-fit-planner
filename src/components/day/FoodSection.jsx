@@ -23,7 +23,6 @@ const StyledIngredientContainer = styled.div`
   display: grid;
   border-bottom: 1px solid ${({ theme }) => theme.color.veryLightGray};
   padding: 5px 0 10px 0;
-  margin: 0 0 10px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     grid-template-columns: repeat(8, 39.5px);
@@ -74,33 +73,33 @@ const StyledIngredientContainer = styled.div`
     }
 
     & > div:nth-of-type(1) {
-      grid-column: 2/5;
+      grid-column: 2/4;
       grid-row: 1/2;
     }
 
     & > div:nth-of-type(2) {
-      grid-column: 5/7;
+      grid-column: 4/6;
       grid-row: 1/2;
     }
 
     & > div:nth-of-type(3) {
-      grid-column: 7/9;
+      grid-column: 6/8;
       grid-row: 1/2;
     }
 
     & > div:nth-of-type(4) {
-      grid-column: 9/11;
+      grid-column: 8/10;
       grid-row: 1/2;
     }
 
     & > div:nth-of-type(5) {
-      grid-column: 11/13;
+      grid-column: 10/12;
       grid-row: 1/2;
     }
 
-    & > button {
-      grid-column: 9/13;
-      grid-row: 2/3;
+    & > button:nth-of-type(1) {
+      grid-column: 12/13;
+      grid-row: 1/2;
     }
   }
 `;
@@ -143,26 +142,46 @@ const StyledButtonAdd = styled(StyledButton)`
 
 const StyledMealBar = styled.div`
   display: grid;
-  border-bottom: 1px solid ${({ theme }) => theme.color.lightGray};
-  margin: 0 0 5px 0;
+  border-bottom: 1px dotted ${({ theme }) => theme.color.lightGray};
+  margin: 10px 0 5px 0;
   padding: 0 0 10px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     grid-template-columns: repeat(8, 39.5px);
 
     ${StyledText} {
-      grid-column: 1/2;
+      grid-column: 2/3;
       grid-row: 1/2;
       align-self: end;
     }
 
     & > div:nth-of-type(1) {
-      grid-column: 2/8;
+      grid-column: 3/8;
       grid-row: 1/2;
     }
 
     ${StyledButtonDelete} {
       grid-column: 8/9;
+      grid-row: 1/2;
+    }
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.m}) {
+    grid-template-columns: repeat(12, 50px);
+
+    ${StyledText} {
+      grid-column: 5/6;
+      grid-row: 1/2;
+      align-self: end;
+    }
+
+    & > div:nth-of-type(1) {
+      grid-column: 6/12;
+      grid-row: 1/2;
+    }
+
+    ${StyledButtonDelete} {
+      grid-column: 12/13;
       grid-row: 1/2;
     }
   }
