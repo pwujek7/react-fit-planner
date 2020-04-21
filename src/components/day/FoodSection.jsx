@@ -163,7 +163,10 @@ const FoodSection = ({ id, name, meals }) => {
                 <StyledDayFormBtnAdd
                   type="button"
                   onClick={() => mealsHelpers.push({
-                    name: '', ingredients: []
+                    name: '',
+                    ingredients: [{
+                      name: '', weight: '', proteins: '', carbs: '', fat: ''
+                    }]
                   })}
                 >
                   <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />

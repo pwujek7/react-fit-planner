@@ -29,7 +29,7 @@ const StyledDayFormContainer = styled.div`
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     width: 340px;
-    padding: 10px;
+    padding: 10px 10px 20px 10px;
     margin: 0 0 40px 0;
   }
 
@@ -99,7 +99,7 @@ const DayForm = ({ create, update }) => {
             ...(isEditMode && { id: values.id, createdDate: values.createdDate }),
             meals: values.meals,
             isTrainingDay: values.isTrainingDay,
-            ...(values.isTrainingDay && { exercises: values.exercises })
+            ...(values.isTrainingDay ? { exercises: values.exercises } : { exercises: [] })
           };
 
           if (isEditMode) {

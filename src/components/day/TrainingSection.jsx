@@ -24,12 +24,6 @@ const StyledSetContainer = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     grid-template-columns: repeat(8, 39.5px);
 
-    &:last-of-type {
-      border-bottom: 1px solid ${({ theme }) => theme.color.lightGray};
-      padding: 0 0 10px 0;
-      margin: 0 0 20px 0;
-    }
-
     & > span {
       grid-column: 3/4;
       grid-row: 1/2;
@@ -138,7 +132,10 @@ const TrainingSection = ({ id, name, exercises }) => {
                 <StyledDayFormBtnAdd
                   type="button"
                   onClick={() => exercisesHelpers.push({
-                    name: '', sets: []
+                    name: '',
+                    sets: [{
+                      reps: '', weight: ''
+                    }]
                   })}
                 >
                   <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />
