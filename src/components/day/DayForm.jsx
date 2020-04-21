@@ -118,7 +118,7 @@ const DayForm = ({ create, update }) => {
                   id="isTrainingDay"
                   name="isTrainingDay"
                   value={values.isTrainingDay}
-                  label="Do you train today ?"
+                  label="Did you train today ?"
                 />
                 {
                   values.isTrainingDay
