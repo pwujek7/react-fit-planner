@@ -75,13 +75,14 @@ export const StyledNavItem = styled.li`
       flex-wrap: nowrap;
       justify-content: center;
       align-items: center;
+      font-weight: ${({ theme }) => theme.font.size.medium};
       height: 100px;
       text-decoration: none;
       padding: 0 0 15px 0;
-    }
 
-    & > a:link, a:visited, a:hover, a:active {
-      color: ${({ theme }) => theme.color.veryLightGray};
+      &:link, &:visited, &:hover, &:active {
+        color: ${({ theme }) => theme.color.veryLightGray};
+      }
     }
   }
 
@@ -97,18 +98,18 @@ export const StyledNavItem = styled.li`
       &.active {
         color: ${({ theme }) => theme.color.darkBlue} !important;
       }
-    }
 
-    & > a:link, a:visited {
-      color: ${({ theme }) => theme.color.gray};
-    }
+      & > svg {
+        display: none;
+      }
 
-    & > a:hover {
-      color: ${({ theme }) => theme.color.darkBlue};
-    }
+      &:link, &:visited {
+        color: ${({ theme }) => theme.color.gray};
+      }
 
-    & > svg {
-      display: none;
+      &:hover {
+        color: ${({ theme }) => theme.color.darkBlue};
+      }
     }
   }
 `;

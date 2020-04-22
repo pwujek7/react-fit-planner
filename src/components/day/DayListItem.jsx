@@ -128,10 +128,10 @@ const StyledDayItemLink = styled(StyledLink)`
 
 const DayListItem = ({ day, onDelete }) => {
   const {
-    id, createdDate,
-    exercises: isTrainigDay
+    id, createdDate, exercises
   } = day;
   const [dDay, month, year] = formatDate(createdDate);
+  const isTrainingDay = exercises.length > 0;
 
   const handleClick = () => {
     onDelete(day.id);
@@ -155,7 +155,7 @@ const DayListItem = ({ day, onDelete }) => {
         </StyledDayItemLink>
       </StyledDayItemOptionPanel>
       <StyledDayItemIconPanel>
-        <Icon icon={ICONS.LIFT} size="24" color={isTrainigDay ? COLORS.DARKBLUE : COLORS.VERYLIGHTGRAY} />
+        <Icon icon={ICONS.LIFT} size="24" color={isTrainingDay ? COLORS.DARKBLUE : COLORS.VERYLIGHTGRAY} />
         <Icon icon={ICONS.SPOONKNIFE} size="24" color={COLORS.DARKBLUE} />
       </StyledDayItemIconPanel>
       <StyledDayItemButton type="button" onClick={handleClick}>delete</StyledDayItemButton>
