@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Form } from 'formik';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -68,7 +69,14 @@ const StyledLoginImagePanel = styled(StyledFormImagePanel)`
 
 const Login = ({ login }) => {
   const auth = useSelector(selectAuth);
-  const { loginError, loginErrorMessage } = auth;
+  const { loginError, loginErrorMessage, isAuthenticated } = auth;
+  const history = useHistory();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push('/');
+    }
+  }, [isAuthenticated]);
 
   return (
     <StyledAbsoluteContainer>
