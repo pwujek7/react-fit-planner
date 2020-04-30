@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -72,6 +72,7 @@ const StyledDayFormSubmit = styled(StyledButton)`
 
 const DayForm = ({ create, update }) => {
   const { dayId } = useParams();
+  const history = useHistory();
   const days = useSelector(selectDays);
   const dayValues = useSelector(selectDayById(dayId));
   const { createdDate } = dayValues[0] || {};
@@ -85,6 +86,10 @@ const DayForm = ({ create, update }) => {
     editDayError,
     editDayErrorMessage
   } = days;
+
+  const redirectToHome = () => {
+    history.push('/');
+  };
 
   return (
     <StyledDayFormContainer>
@@ -107,6 +112,8 @@ const DayForm = ({ create, update }) => {
           } else {
             create({ ...valuesToSubmit, createdDate: new Date().toString() });
           }
+
+          redirectToHome();
         }}
       >
         {
