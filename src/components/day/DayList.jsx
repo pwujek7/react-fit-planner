@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import DayListItem from './DayListItem';
+import NewDayListItem from './NewDayListItem';
 
 import { removeDay } from '../../actions/daysActions';
 import { selectDays } from '../../selectors/selectors';
@@ -51,6 +52,7 @@ const DayList = ({ data }) => {
   return (
     <StyledDayListContainer>
       <StyledDayList>
+        <NewDayListItem />
         {
           data.map((day) => (
             <DayListItem
