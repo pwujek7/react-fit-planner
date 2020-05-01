@@ -16,6 +16,11 @@ import StyledButton from '../common/styled/StyledButton';
 import StyledErrorMessage from '../common/styled/StyledErrorMessage';
 import StyledFormImagePanel from '../common/styled/StyledFormImagePanel';
 import Icon from '../common/Icon';
+import StyledLink from '../common/styled/StyledLink';
+import StyledText,
+{
+  FONTCOLOR, FONTSIZE, FONTWEIGHT
+} from '../common/styled/StyledText';
 
 import { signIn } from '../../actions/authActions';
 import { loginValidation } from '../../schema/validation';
@@ -67,6 +72,23 @@ const StyledLoginImagePanel = styled(StyledFormImagePanel)`
   }
 `;
 
+const StyledLoginHintBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  line-height: ${({ theme }) => theme.font.size.xl};
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
+    margin: 25px 0 0 0;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoint.xl}) {
+    margin: 10px 0 0 0;
+  }
+`;
+
 const Login = ({ login }) => {
   const auth = useSelector(selectAuth);
   const { loginError, loginErrorMessage, isAuthenticated } = auth;
@@ -109,6 +131,16 @@ const Login = ({ login }) => {
             )
           }
         </FormContainer>
+        <StyledLoginHintBar>
+          <StyledText
+            fontColor={FONTCOLOR.GRAY}
+            fontSize={FONTSIZE.S}
+            fontWeight={FONTWEIGHT.NORMAL}
+          >
+            New to fitPlanner?
+          </StyledText>
+          <StyledLink to="/register">Create an account</StyledLink>
+        </StyledLoginHintBar>
       </StyledFormWrapper>
       <StyledLoginImagePanel />
     </StyledAbsoluteContainer>
