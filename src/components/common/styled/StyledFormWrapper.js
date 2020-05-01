@@ -5,7 +5,7 @@ const StyledFormWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.white};
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    width: 280px;
+    width: 300px;
     padding: 30px 20px 40px 20px;
   }
 
