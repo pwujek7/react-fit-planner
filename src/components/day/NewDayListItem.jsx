@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Icon from '../common/Icon';
 
 import { ICONS, COLORS } from '../../constants/icons';
+
+import { selectDayByCurrentDate } from '../../selectors/selectors';
 
 const StyledNewDayItemDatePanel = styled.div`
   color: ${({ theme }) => theme.color.darkBlue};
@@ -50,9 +53,12 @@ const StyledNewDayItemIconPanel = styled.div`
 
 const NewDayListItem = () => {
   const history = useHistory();
+  const day = useSelector(selectDayByCurrentDate);
+  const { id } = day[0] || {};
+  const route = id ? `/day/${id}` : '/day';
 
   const handleClick = () => {
-    history.push('/day');
+    history.push(route);
   };
 
   return (
