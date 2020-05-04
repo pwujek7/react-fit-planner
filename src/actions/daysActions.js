@@ -83,8 +83,8 @@ export const createDay = (day) => (dispatch, getState) => {
     ...day,
     userId: uid
   })
-    .then(() => {
-      dispatch(addDaySuccess(day));
+    .then((docRef) => {
+      dispatch(addDaySuccess({ ...day, id: docRef.id }));
     })
     .catch((error) => {
       dispatch(addDayError(error));

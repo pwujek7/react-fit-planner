@@ -28,17 +28,17 @@ const Home = () => {
       <>
         {
           fetchAllDaysError
-          && <span>{fetchAllDaysErrorMessage}</span>
+            && <span>{fetchAllDaysErrorMessage}</span>
         }
 
         {
           fetchAllDaysLoading
-          && <LoadingIndicator />
+            && <LoadingIndicator />
         }
 
         {
           (daysData && !fetchAllDaysError && !fetchAllDaysLoading)
-          && <DayList data={daysData} />
+            && <DayList data={daysData} />
         }
       </>
     </ErrorBoundary>

@@ -6,6 +6,12 @@ export const selectDays = state => state.days;
 export const selectDaysData = createSelector(
   selectDays,
   days => days.data
+    .slice()
+    .sort((a, b) => {
+      const dateA = new Date(a.createdDate);
+      const dateB = new Date(b.createdDate);
+      return dateB - dateA;
+    })
 );
 
 export const selectDayById = (dayId) => {
