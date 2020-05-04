@@ -21,6 +21,12 @@ export const selectDayById = (dayId) => {
   );
 };
 
+export const selectDayByCurrentDate = createSelector(
+  selectDaysData,
+  days => days
+    .filter((day) => new Date(day.createdDate).toDateString() === new Date().toDateString())
+);
+
 export const selectDayMeals = (dayId) => {
   return createSelector(
     selectDayById(dayId),
