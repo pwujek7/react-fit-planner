@@ -7,12 +7,12 @@ import {
   Cell
 } from 'recharts';
 
-import { theme } from '../../theme/Theme';
+import { COLOR } from '../../constants/styles';
 
 const COLORS = [
-  theme.color.chartBlue,
-  theme.color.chartYellow,
-  theme.color.chartRed
+  COLOR.BLUE,
+  COLOR.YELLOW,
+  COLOR.RED
 ];
 
 const renderCustomLabel = ({

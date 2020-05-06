@@ -7,7 +7,8 @@ import StyledButton from '../common/styled/StyledButton';
 import StyledLink from '../common/styled/StyledLink';
 
 import { formatDate } from '../../utilities/date';
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR } from '../../constants/styles';
 
 const StyledDayItemDatePanel = styled.div`
   color: ${({ theme }) => theme.color.gray};
@@ -146,17 +147,17 @@ const DayListItem = ({ day, onDelete }) => {
       </StyledDayItemDatePanel>
       <StyledDayItemOptionPanel>
         <StyledDayItemLink to={`/${id}`}>
-          <Icon icon={ICONS.EYE} size="16" color={COLORS.DARKBLUE} />
+          <Icon icon={ICONS.EYE} size="16" color={COLOR.DARKBLUE} />
           view
         </StyledDayItemLink>
         <StyledDayItemLink to={`/day/${id}`}>
-          <Icon icon={ICONS.PENCIL} size="14" color={COLORS.DARKBLUE} />
+          <Icon icon={ICONS.PENCIL} size="14" color={COLOR.DARKBLUE} />
           edit
         </StyledDayItemLink>
       </StyledDayItemOptionPanel>
       <StyledDayItemIconPanel>
-        <Icon icon={ICONS.LIFT} size="24" color={isTrainingDay ? COLORS.DARKBLUE : COLORS.VERYLIGHTGRAY} />
-        <Icon icon={ICONS.SPOONKNIFE} size="24" color={COLORS.DARKBLUE} />
+        <Icon icon={ICONS.LIFT} size="24" color={isTrainingDay ? COLOR.DARKBLUE : COLOR.VERYLIGHTGRAY} />
+        <Icon icon={ICONS.SPOONKNIFE} size="24" color={COLOR.DARKBLUE} />
       </StyledDayItemIconPanel>
       <StyledDayItemButton type="button" onClick={handleClick}>delete</StyledDayItemButton>
     </StyledDayListItem>

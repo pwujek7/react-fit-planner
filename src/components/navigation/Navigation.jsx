@@ -12,7 +12,8 @@ import UnAuthenticatedLinks from './UnAuthenticatedLinks';
 
 import Icon from '../common/Icon';
 import Logo from '../common/Logo';
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR } from '../../constants/styles';
 
 const StyledNavBar = styled.nav`
   position: relative;
@@ -221,7 +222,7 @@ const Navigation = ({ logout }) => {
       <>
         <AuthenticatedLinks onClose={closeNavigation} />
         <StyledNavLogout type="button" onClick={handleLogout}>
-          <Icon icon={ICONS.EXIT} size="32" color={COLORS.DARKBLUE} />
+          <Icon icon={ICONS.EXIT} size="32" color={COLOR.DARKBLUE} />
         </StyledNavLogout>
       </>
     );
@@ -231,8 +232,8 @@ const Navigation = ({ logout }) => {
       <StyledNavToggle onClick={toggleNavigation}>
         {
           isExpanded
-            ? <Icon icon={ICONS.CROSS} size="28" color={COLORS.DARKBLUE} />
-            : <Icon icon={ICONS.MENU} size="32" color={COLORS.DARKBLUE} />
+            ? <Icon icon={ICONS.CROSS} size="28" color={COLOR.DARKBLUE} />
+            : <Icon icon={ICONS.MENU} size="32" color={COLOR.DARKBLUE} />
         }
       </StyledNavToggle>
       <StyledNavLogo exact to="/">
@@ -241,7 +242,7 @@ const Navigation = ({ logout }) => {
       <StyledNavList isExpanded={isExpanded}>
         <StyledNavItem onClick={closeNavigation}>
           <NavLink exact to="/" activeClassName="active">
-            <Icon icon={ICONS.HOME} size="32" color={COLORS.VERYLIGHTGRAY} />
+            <Icon icon={ICONS.HOME} size="32" color={COLOR.VERYLIGHTGRAY} />
             Home
           </NavLink>
         </StyledNavItem>

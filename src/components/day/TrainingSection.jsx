@@ -11,12 +11,10 @@ import StyledDayFormGridBar from './StyledDayFormGridBar';
 
 import TextInput from '../common/TextInput';
 import Icon from '../common/Icon';
-import StyledText,
-{
-  FONTCOLOR, FONTSIZE, FONTWEIGHT
-} from '../common/styled/StyledText';
+import StyledText from '../common/styled/StyledText';
 
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR, SIZE, WEIGHT } from '../../constants/styles';
 
 const StyledSetContainer = styled.div`
   display: grid;
@@ -124,9 +122,9 @@ const TrainingSection = ({ id, name, exercises }) => {
           return (
             <>
               <StyledDayFormSectionHeading
-                fontColor={FONTCOLOR.GRAY}
-                fontSize={FONTSIZE.S}
-                fontWeight={FONTWEIGHT.NORMAL}
+                fontColor={COLOR.GRAY}
+                fontSize={SIZE.S}
+                fontWeight={WEIGHT.NORMAL}
               >
                 Exercises
                 <StyledDayFormBtnAdd
@@ -138,7 +136,7 @@ const TrainingSection = ({ id, name, exercises }) => {
                     }]
                   })}
                 >
-                  <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />
+                  <Icon icon={ICONS.PLUS} size="16" color={COLOR.WHITE} />
                 </StyledDayFormBtnAdd>
               </StyledDayFormSectionHeading>
               {
@@ -148,9 +146,9 @@ const TrainingSection = ({ id, name, exercises }) => {
                   <div key={exerciseIndex}>
                     <StyledDayFormBar>
                       <StyledText
-                        fontColor={FONTCOLOR.GRAY}
-                        fontSize={FONTSIZE.S}
-                        fontWeight={FONTWEIGHT.NORMAL}
+                        fontColor={COLOR.GRAY}
+                        fontSize={SIZE.S}
+                        fontWeight={WEIGHT.NORMAL}
                       >
                         {exerciseIndex + 1}
                       </StyledText>
@@ -159,7 +157,7 @@ const TrainingSection = ({ id, name, exercises }) => {
                         type="button"
                         onClick={() => exercisesHelpers.remove(exerciseIndex)}
                       >
-                        <Icon icon={ICONS.BIN} size="20" color={COLORS.LIGHTGRAY} />
+                        <Icon icon={ICONS.BIN} size="20" color={COLOR.LIGHTGRAY} />
                       </StyledDayFormBtnDelete>
                     </StyledDayFormBar>
                     <FieldArray
@@ -169,9 +167,9 @@ const TrainingSection = ({ id, name, exercises }) => {
                         return (
                           <>
                             <StyledDayFormSectionHeading
-                              fontColor={FONTCOLOR.GRAY}
-                              fontSize={FONTSIZE.S}
-                              fontWeight={FONTWEIGHT.NORMAL}
+                              fontColor={COLOR.GRAY}
+                              fontSize={SIZE.S}
+                              fontWeight={WEIGHT.NORMAL}
                             >
                               Sets
                               <StyledDayFormBtnAdd
@@ -180,7 +178,7 @@ const TrainingSection = ({ id, name, exercises }) => {
                                   reps: '', weight: ''
                                 })}
                               >
-                                <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />
+                                <Icon icon={ICONS.PLUS} size="16" color={COLOR.WHITE} />
                               </StyledDayFormBtnAdd>
                             </StyledDayFormSectionHeading>
                             {
@@ -189,9 +187,9 @@ const TrainingSection = ({ id, name, exercises }) => {
                               && exercises[exerciseIndex].sets.map((set, setIndex) => (
                                 <StyledSetContainer key={setIndex}>
                                   <StyledText
-                                    fontColor={FONTCOLOR.LIGHTGRAY}
-                                    fontSize={FONTSIZE.S}
-                                    fontWeight={FONTWEIGHT.NORMAL}
+                                    fontColor={COLOR.LIGHTGRAY}
+                                    fontSize={SIZE.S}
+                                    fontWeight={WEIGHT.NORMAL}
                                   >
                                     {`${exerciseIndex + 1}.${setIndex + 1}`}
                                   </StyledText>
@@ -201,7 +199,7 @@ const TrainingSection = ({ id, name, exercises }) => {
                                     type="button"
                                     onClick={() => setsHelpers.remove(setIndex)}
                                   >
-                                    <Icon icon={ICONS.BIN} size="20" color={COLORS.LIGHTGRAY} />
+                                    <Icon icon={ICONS.BIN} size="20" color={COLOR.LIGHTGRAY} />
                                   </StyledDayFormBtnDelete>
                                 </StyledSetContainer>
                               ))
