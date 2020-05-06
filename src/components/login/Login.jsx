@@ -17,14 +17,12 @@ import StyledErrorMessage from '../common/styled/StyledErrorMessage';
 import StyledFormImagePanel from '../common/styled/StyledFormImagePanel';
 import Icon from '../common/Icon';
 import StyledLink from '../common/styled/StyledLink';
-import StyledText,
-{
-  FONTCOLOR, FONTSIZE, FONTWEIGHT
-} from '../common/styled/StyledText';
+import StyledText from '../common/styled/StyledText';
 
 import { signIn } from '../../actions/authActions';
 import { loginValidation } from '../../schema/validation';
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR, SIZE, WEIGHT } from '../../constants/styles';
 
 const StyledLoginHeading = styled(StyledHeading)`
   background-color: ${({ theme }) => theme.color.white};
@@ -104,7 +102,7 @@ const Login = ({ login }) => {
     <StyledAbsoluteContainer>
       <StyledFormWrapper>
         <StyledLoginHeading>
-          <Icon icon={ICONS.ENTER} size="24" color={COLORS.DARKBLUE} />
+          <Icon icon={ICONS.ENTER} size="24" color={COLOR.DARKBLUE} />
           Login
         </StyledLoginHeading>
         <FormContainer
@@ -133,9 +131,9 @@ const Login = ({ login }) => {
         </FormContainer>
         <StyledLoginHintBar>
           <StyledText
-            fontColor={FONTCOLOR.GRAY}
-            fontSize={FONTSIZE.S}
-            fontWeight={FONTWEIGHT.NORMAL}
+            fontColor={COLOR.GRAY}
+            fontSize={SIZE.S}
+            fontWeight={WEIGHT.NORMAL}
           >
             New to fitPlanner?
           </StyledText>

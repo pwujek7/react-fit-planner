@@ -19,7 +19,8 @@ import Icon from '../common/Icon';
 
 import { signUp } from '../../actions/authActions';
 import { registerValidation } from '../../schema/validation';
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR } from '../../constants/styles';
 
 const StyledRegisterHeading = styled(StyledHeading)`
   background-color: ${({ theme }) => theme.color.white};
@@ -83,7 +84,7 @@ const Register = ({ register }) => {
     <StyledAbsoluteContainer>
       <StyledFormWrapper>
         <StyledRegisterHeading>
-          <Icon icon={ICONS.PLUS} size="24" color={COLORS.DARKBLUE} />
+          <Icon icon={ICONS.PLUS} size="24" color={COLOR.DARKBLUE} />
           Register
         </StyledRegisterHeading>
         <FormContainer

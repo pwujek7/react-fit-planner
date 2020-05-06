@@ -19,7 +19,8 @@ import Icon from '../common/Icon';
 
 import { updateEmail, updatePassword } from '../../actions/authActions';
 import { newEmailValidation, newPasswordValidation } from '../../schema/validation';
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR } from '../../constants/styles';
 
 const StyledSettingsHeading = styled(StyledHeading)`
   background-color: ${({ theme }) => theme.color.white};
@@ -81,7 +82,7 @@ const Settings = ({ newEmail, newPassword }) => {
     <StyledAbsoluteContainer>
       <StyledFormWrapper>
         <StyledSettingsHeading>
-          <Icon icon={ICONS.COG} size="24" color={COLORS.DARKBLUE} />
+          <Icon icon={ICONS.COG} size="24" color={COLOR.DARKBLUE} />
           Settings
         </StyledSettingsHeading>
         <Tabs>

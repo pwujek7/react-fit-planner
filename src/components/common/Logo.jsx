@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Icon from './Icon';
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR } from '../../constants/styles';
 
 const StyledLogoText = styled.span`
   position: absolute;
@@ -22,7 +23,7 @@ const Logo = ({ isTextVisible }) => {
 
   return (
     <>
-      <Icon icon={ICONS.LOGO} size="56" color={COLORS.DARKBLUE} viewBox="0 0 141.239 141.238" />
+      <Icon icon={ICONS.LOGO} size="56" color={COLOR.DARKBLUE} viewBox="0 0 141.239 141.238" />
       { logoText }
     </>
   );

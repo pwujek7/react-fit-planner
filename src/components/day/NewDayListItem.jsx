@@ -5,7 +5,8 @@ import styled from 'styled-components';
 
 import Icon from '../common/Icon';
 
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR } from '../../constants/styles';
 
 import { selectDayByCurrentDate } from '../../selectors/selectors';
 
@@ -68,7 +69,7 @@ const NewDayListItem = () => {
         <span>day</span>
       </StyledNewDayItemDatePanel>
       <StyledNewDayItemIconPanel>
-        <Icon icon={ICONS.PLUS} size="24" color={COLORS.DARKBLUE} />
+        <Icon icon={ICONS.PLUS} size="24" color={COLOR.DARKBLUE} />
       </StyledNewDayItemIconPanel>
     </StyledNewDayListItem>
   );

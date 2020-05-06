@@ -17,7 +17,8 @@ import { createDay, updateDay } from '../../actions/daysActions';
 import { selectDays, selectDayById } from '../../selectors/selectors';
 import { emptyValues } from '../../constants/emptyValues';
 import { formatDate } from '../../utilities/date';
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR } from '../../constants/styles';
 
 const StyledDayFormContainer = styled.div`
   border: 2px solid ${({ theme }) => theme.color.darkBlue};
@@ -94,7 +95,7 @@ const DayForm = ({ create, update }) => {
   return (
     <StyledDayFormContainer>
       <StyledDayFormHeading>
-        <Icon icon={ICONS.CALENDAR} size="24" color={COLORS.DARKBLUE} />
+        <Icon icon={ICONS.CALENDAR} size="24" color={COLOR.DARKBLUE} />
         {headingCopy}
       </StyledDayFormHeading>
       <Formik

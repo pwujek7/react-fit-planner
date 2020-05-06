@@ -8,16 +8,14 @@ import { selectCurrentMacroAmount, selectDayById } from '../../selectors/selecto
 import ChartPie from '../charts/ChartPie';
 
 import StyledAbsoluteContainer from '../common/styled/StyledAbsoluteContainer';
-import StyledText,
-{
-  FONTCOLOR, BORDERCOLOR, FONTSIZE, FONTWEIGHT
-} from '../common/styled/StyledText';
+import StyledText from '../common/styled/StyledText';
 import StyledHeading from '../common/styled/StyledHeading';
 import Icon from '../common/Icon';
 
 import { calculateCalories, calculateMacroPercentage } from '../../utilities/macro';
 import { formatDate } from '../../utilities/date';
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR, SIZE, WEIGHT } from '../../constants/styles';
 
 const StyledDayDetailsContainer = styled(StyledAbsoluteContainer)`
   border: 1px solid ${({ theme }) => theme.color.lightGray};
@@ -146,9 +144,9 @@ const DayDetails = () => {
     <StyledDayDetailsContainer>
       <StyledDayDetailsHeading>{dDay}-{month}-{year}</StyledDayDetailsHeading>
       <StyledDayDetailsText
-        fontColor={FONTCOLOR.DARKBLUE}
-        fontSize={FONTSIZE.L}
-        fontWeight={FONTWEIGHT.MEDIUM}
+        fontColor={COLOR.DARKBLUE}
+        fontSize={SIZE.L}
+        fontWeight={WEIGHT.MEDIUM}
       >
         {calories} kcal
       </StyledDayDetailsText>
@@ -156,17 +154,17 @@ const DayDetails = () => {
         <StyledDayDetailsRow>
           <StyledTextWrapper>
             <StyledText
-              fontColor={FONTCOLOR.GRAY}
-              fontSize={FONTSIZE.S}
-              fontWeight={FONTWEIGHT.NORMAL}
+              fontColor={COLOR.GRAY}
+              fontSize={SIZE.S}
+              fontWeight={WEIGHT.NORMAL}
             >
               Proteins:
             </StyledText>
             <StyledText
-              fontColor={FONTCOLOR.DARKBLUE}
-              borderColor={BORDERCOLOR.BLUE}
-              fontSize={FONTSIZE.L}
-              fontWeight={FONTWEIGHT.MEDIUM}
+              fontColor={COLOR.DARKBLUE}
+              borderColor={COLOR.BLUE}
+              fontSize={SIZE.L}
+              fontWeight={WEIGHT.MEDIUM}
               padding
               margin
             >
@@ -175,17 +173,17 @@ const DayDetails = () => {
           </StyledTextWrapper>
           <StyledTextWrapper>
             <StyledText
-              fontColor={FONTCOLOR.GRAY}
-              fontSize={FONTSIZE.S}
-              fontWeight={FONTWEIGHT.NORMAL}
+              fontColor={COLOR.GRAY}
+              fontSize={SIZE.S}
+              fontWeight={WEIGHT.NORMAL}
             >
               Fat:
             </StyledText>
             <StyledText
-              fontColor={FONTCOLOR.DARKBLUE}
-              borderColor={BORDERCOLOR.RED}
-              fontSize={FONTSIZE.L}
-              fontWeight={FONTWEIGHT.MEDIUM}
+              fontColor={COLOR.DARKBLUE}
+              borderColor={COLOR.RED}
+              fontSize={SIZE.L}
+              fontWeight={WEIGHT.MEDIUM}
               padding
               margin
             >
@@ -194,17 +192,17 @@ const DayDetails = () => {
           </StyledTextWrapper>
           <StyledTextWrapper>
             <StyledText
-              fontColor={FONTCOLOR.GRAY}
-              fontSize={FONTSIZE.S}
-              fontWeight={FONTWEIGHT.NORMAL}
+              fontColor={COLOR.GRAY}
+              fontSize={SIZE.S}
+              fontWeight={WEIGHT.NORMAL}
             >
               Carbs:
             </StyledText>
             <StyledText
-              fontColor={FONTCOLOR.DARKBLUE}
-              borderColor={BORDERCOLOR.YELLOW}
-              fontSize={FONTSIZE.L}
-              fontWeight={FONTWEIGHT.MEDIUM}
+              fontColor={COLOR.DARKBLUE}
+              borderColor={COLOR.YELLOW}
+              fontSize={SIZE.L}
+              fontWeight={WEIGHT.MEDIUM}
               padding
               margin
             >
@@ -219,10 +217,10 @@ const DayDetails = () => {
           onClick={handleReturn}
           icon={ICONS.RETURN}
           size="24"
-          color={COLORS.DARKBLUE}
+          color={COLOR.DARKBLUE}
         />
         <Link to={`/day/${dayId}`}>
-          <Icon icon={ICONS.PENCIL} size="24" color={COLORS.DARKBLUE} />
+          <Icon icon={ICONS.PENCIL} size="24" color={COLOR.DARKBLUE} />
         </Link>
       </StyledDayDetailsOptionsPanel>
     </StyledDayDetailsContainer>

@@ -11,12 +11,10 @@ import StyledDayFormGridBar from './StyledDayFormGridBar';
 
 import TextInput from '../common/TextInput';
 import Icon from '../common/Icon';
-import StyledText,
-{
-  FONTCOLOR, FONTSIZE, FONTWEIGHT
-} from '../common/styled/StyledText';
+import StyledText from '../common/styled/StyledText';
 
-import { ICONS, COLORS } from '../../constants/icons';
+import { ICONS } from '../../constants/icons';
+import { COLOR, SIZE, WEIGHT } from '../../constants/styles';
 
 const StyledIngredientContainer = styled.div`
   display: grid;
@@ -155,9 +153,9 @@ const FoodSection = ({ id, name, meals }) => {
           return (
             <>
               <StyledDayFormSectionHeading
-                fontColor={FONTCOLOR.GRAY}
-                fontSize={FONTSIZE.S}
-                fontWeight={FONTWEIGHT.NORMAL}
+                fontColor={COLOR.GRAY}
+                fontSize={SIZE.S}
+                fontWeight={WEIGHT.NORMAL}
               >
                 Meals
                 <StyledDayFormBtnAdd
@@ -169,7 +167,7 @@ const FoodSection = ({ id, name, meals }) => {
                     }]
                   })}
                 >
-                  <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />
+                  <Icon icon={ICONS.PLUS} size="16" color={COLOR.WHITE} />
                 </StyledDayFormBtnAdd>
               </StyledDayFormSectionHeading>
               {
@@ -179,9 +177,9 @@ const FoodSection = ({ id, name, meals }) => {
                   <div key={mealIndex}>
                     <StyledDayFormBar>
                       <StyledText
-                        fontColor={FONTCOLOR.LIGHTGRAY}
-                        fontSize={FONTSIZE.S}
-                        fontWeight={FONTWEIGHT.NORMAL}
+                        fontColor={COLOR.LIGHTGRAY}
+                        fontSize={SIZE.S}
+                        fontWeight={WEIGHT.NORMAL}
                       >
                         {mealIndex + 1}
                       </StyledText>
@@ -190,7 +188,7 @@ const FoodSection = ({ id, name, meals }) => {
                         type="button"
                         onClick={() => mealsHelpers.remove(mealIndex)}
                       >
-                        <Icon icon={ICONS.BIN} size="20" color={COLORS.LIGHTGRAY} />
+                        <Icon icon={ICONS.BIN} size="20" color={COLOR.LIGHTGRAY} />
                       </StyledDayFormBtnDelete>
                     </StyledDayFormBar>
                     <FieldArray
@@ -200,9 +198,9 @@ const FoodSection = ({ id, name, meals }) => {
                         return (
                           <>
                             <StyledDayFormSectionHeading
-                              fontColor={FONTCOLOR.GRAY}
-                              fontSize={FONTSIZE.S}
-                              fontWeight={FONTWEIGHT.NORMAL}
+                              fontColor={COLOR.GRAY}
+                              fontSize={SIZE.S}
+                              fontWeight={WEIGHT.NORMAL}
                             >
                               Ingredients
                               <StyledDayFormBtnAdd
@@ -211,7 +209,7 @@ const FoodSection = ({ id, name, meals }) => {
                                   name: '', weight: '', proteins: '', carbs: '', fat: ''
                                 })}
                               >
-                                <Icon icon={ICONS.PLUS} size="16" color={COLORS.WHITE} />
+                                <Icon icon={ICONS.PLUS} size="16" color={COLOR.WHITE} />
                               </StyledDayFormBtnAdd>
                             </StyledDayFormSectionHeading>
                             {
@@ -221,9 +219,9 @@ const FoodSection = ({ id, name, meals }) => {
                                 <div key={ingredientIndex}>
                                   <StyledIngredientContainer>
                                     <StyledText
-                                      fontColor={FONTCOLOR.LIGHTGRAY}
-                                      fontSize={FONTSIZE.S}
-                                      fontWeight={FONTWEIGHT.NORMAL}
+                                      fontColor={COLOR.LIGHTGRAY}
+                                      fontSize={SIZE.S}
+                                      fontWeight={WEIGHT.NORMAL}
                                     >
                                       {`${mealIndex + 1}.${ingredientIndex + 1}`}
                                     </StyledText>
@@ -236,7 +234,7 @@ const FoodSection = ({ id, name, meals }) => {
                                       type="button"
                                       onClick={() => ingredientsHelpers.remove(ingredientIndex)}
                                     >
-                                      <Icon icon={ICONS.BIN} size="20" color={COLORS.LIGHTGRAY} />
+                                      <Icon icon={ICONS.BIN} size="20" color={COLOR.LIGHTGRAY} />
                                     </StyledDayFormBtnDelete>
                                   </StyledIngredientContainer>
                                 </div>
