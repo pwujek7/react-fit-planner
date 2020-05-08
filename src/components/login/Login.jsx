@@ -22,7 +22,9 @@ import StyledText from '../common/styled/StyledText';
 import { signIn } from '../../actions/authActions';
 import { loginValidation } from '../../schema/validation';
 import { ICONS } from '../../constants/icons';
-import { COLOR, SIZE, WEIGHT } from '../../constants/styles';
+import {
+  COLOR, SIZE, WEIGHT, FLEXROW
+} from '../../constants/styles';
 
 const StyledLoginHeading = styled(StyledHeading)`
   background-color: ${({ theme }) => theme.color.white};
@@ -71,9 +73,7 @@ const StyledLoginImagePanel = styled(StyledFormImagePanel)`
 `;
 
 const StyledLoginHintBar = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  ${FLEXROW};
   justify-content: space-between;
   align-items: center;
   line-height: ${({ theme }) => theme.font.size.xl};

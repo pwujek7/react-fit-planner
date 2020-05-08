@@ -5,15 +5,15 @@ import styled from 'styled-components';
 import StyledAbsoluteContainer from './styled/StyledAbsoluteContainer';
 import StyledText from './styled/StyledText';
 
-import { COLOR, SIZE, WEIGHT } from '../../constants/styles';
+import {
+  COLOR, SIZE, WEIGHT, FLEXCOLUMN
+} from '../../constants/styles';
 
 const StyledErrorBoundaryContainer = styled(StyledAbsoluteContainer)`
-  width: 260px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  ${FLEXCOLUMN};
   justify-content: center;
   align-items: center;
+  width: 260px;
 `;
 class ErrorBoundary extends Component {
   state = {

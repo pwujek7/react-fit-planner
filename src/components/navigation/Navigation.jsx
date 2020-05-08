@@ -13,7 +13,7 @@ import UnAuthenticatedLinks from './UnAuthenticatedLinks';
 import Icon from '../common/Icon';
 import Logo from '../common/Logo';
 import { ICONS } from '../../constants/icons';
-import { COLOR } from '../../constants/styles';
+import { COLOR, FLEXCOLUMN, FLEXROW } from '../../constants/styles';
 
 const StyledNavBar = styled.nav`
   position: relative;
@@ -71,9 +71,7 @@ export const StyledNavItem = styled.li`
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     & > a {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
+      ${FLEXCOLUMN};
       justify-content: center;
       align-items: center;
       font-weight: ${({ theme }) => theme.font.size.medium};
@@ -126,13 +124,11 @@ const StyledNavLogo = styled(NavLink)`
 
 const StyledNavToggle = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    ${FLEXROW};
     justify-content: center;
     align-items: center;
+    width: 50px;
+    height: 50px;
     position: absolute;
     top: 0;
     right: 0;
@@ -150,15 +146,13 @@ const StyledNavLogout = styled.button`
   cursor: pointer;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
-    color: ${({ theme }) => theme.color.darkBlue};
-    background-color: ${({ theme }) => theme.color.veryLightGray};
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    ${FLEXCOLUMN};
     justify-content: center;
     align-items: center;
     height: 50px;
     width: 100%;
+    color: ${({ theme }) => theme.color.darkBlue};
+    background-color: ${({ theme }) => theme.color.veryLightGray};
     position: absolute;
     left: 0;
     bottom: 0;

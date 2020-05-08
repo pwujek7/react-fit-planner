@@ -15,7 +15,9 @@ import Icon from '../common/Icon';
 import { calculateCalories, calculateMacroPercentage } from '../../utilities/macro';
 import { formatDate } from '../../utilities/date';
 import { ICONS } from '../../constants/icons';
-import { COLOR, SIZE, WEIGHT } from '../../constants/styles';
+import {
+  COLOR, SIZE, WEIGHT, FLEXROW
+} from '../../constants/styles';
 
 const StyledDayDetailsContainer = styled(StyledAbsoluteContainer)`
   border: 1px solid ${({ theme }) => theme.color.lightGray};
@@ -91,11 +93,9 @@ const StyledDayDetailsRow = styled.div`
 `;
 
 const StyledTextWrapper = styled.div`
-  margin: 10px 0 0 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  ${FLEXROW};
   align-items: center;
+  margin: 10px 0 0 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {
     justify-content: flex-start;
@@ -108,8 +108,7 @@ const StyledTextWrapper = styled.div`
 `;
 
 const StyledDayDetailsOptionsPanel = styled.div`
-  display: flex;
-  flex-direction: row;
+  ${FLEXROW};
   justify-content: space-around;
   align-items: center;
   background-color: ${({ theme }) => theme.color.white};

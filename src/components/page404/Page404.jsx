@@ -6,12 +6,12 @@ import StyledAbsoluteContainer from '../common/styled/StyledAbsoluteContainer';
 import StyledText from '../common/styled/StyledText';
 import StyledLink from '../common/styled/StyledLink';
 
-import { COLOR, SIZE, WEIGHT } from '../../constants/styles';
+import {
+  COLOR, SIZE, WEIGHT, FLEXCOLUMN
+} from '../../constants/styles';
 
 const StyledPage404Container = styled(StyledAbsoluteContainer)`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  ${FLEXCOLUMN};
   justify-content: center;
   align-items: center;
 `;

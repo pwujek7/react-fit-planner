@@ -1,3 +1,4 @@
+import { css } from 'styled-components';
 import { theme } from '../theme/Theme';
 
 export const COLOR = {
@@ -22,3 +23,15 @@ export const WEIGHT = {
   NORMAL: theme.font.weight.normal,
   MEDIUM: theme.font.weight.medium
 };
+
+export const FLEXCOLUMN = css`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+`;
+
+export const FLEXROW = css`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+`;

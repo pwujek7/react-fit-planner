@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 import StyledErrorMessage from './styled/StyledErrorMessage';
 
+import { FLEXCOLUMN } from '../../constants/styles';
+
 const StyledInputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  ${FLEXCOLUMN};
   position: relative;
 
   & > input {
