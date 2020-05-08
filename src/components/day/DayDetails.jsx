@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { selectCurrentMacroAmount, selectDayById } from '../../selectors/selectors';
+import { selectCurrentMacroAmount, selectDayById } from '../../selectors/daysSelectors';
 
 import ChartPie from '../charts/ChartPie';
 

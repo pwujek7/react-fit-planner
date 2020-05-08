@@ -8,7 +8,7 @@ import Icon from '../common/Icon';
 import { ICONS } from '../../constants/icons';
 import { COLOR, FLEXROW } from '../../constants/styles';
 
-import { selectDayByCurrentDate } from '../../selectors/selectors';
+import { selectDayByCurrentDate } from '../../selectors/daysSelectors';
 
 const StyledNewDayItemDatePanel = styled.div`
   color: ${({ theme }) => theme.color.darkBlue};

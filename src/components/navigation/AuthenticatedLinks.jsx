@@ -8,7 +8,7 @@ import Icon from '../common/Icon';
 import { ICONS } from '../../constants/icons';
 import { COLOR } from '../../constants/styles';
 
-import { selectDayByCurrentDate } from '../../selectors/selectors';
+import { selectDayByCurrentDate } from '../../selectors/daysSelectors';
 
 const AuthenticatedLinks = ({ onClose }) => {
   const day = useSelector(selectDayByCurrentDate);

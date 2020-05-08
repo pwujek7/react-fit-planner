@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { selectAuth } from '../../selectors/selectors';
+import { selectAuth } from '../../selectors/authSelectors';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const auth = useSelector(selectAuth);

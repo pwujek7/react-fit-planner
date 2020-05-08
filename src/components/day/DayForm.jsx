@@ -14,7 +14,7 @@ import StyledErrorMessage from '../common/styled/StyledErrorMessage';
 import Icon from '../common/Icon';
 
 import { createDay, updateDay } from '../../actions/daysActions';
-import { selectDays, selectDayById } from '../../selectors/selectors';
+import { selectDays, selectDayById } from '../../selectors/daysSelectors';
 import { emptyValues } from '../../constants/emptyValues';
 import { formatDate } from '../../utilities/date';
 import { ICONS } from '../../constants/icons';

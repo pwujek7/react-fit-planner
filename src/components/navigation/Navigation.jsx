@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { selectAuth } from '../../selectors/selectors';
+import { selectAuth } from '../../selectors/authSelectors';
 import { signOut } from '../../actions/authActions';
 
 import AuthenticatedLinks from './AuthenticatedLinks';
