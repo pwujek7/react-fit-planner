@@ -4,18 +4,16 @@ import styled from 'styled-components';
 
 import Tab from './Tab';
 
+import { FLEXROW, FLEXCOLUMN } from '../../../constants/styles';
+
 const StyledTabs = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  ${FLEXCOLUMN};
   justify-content: center;
   align-items: center;
 `;
 
 const StyledTabsList = styled.ul`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  ${FLEXROW};
   justify-content: flex-start;
   align-items: center;
   list-style-type: none;

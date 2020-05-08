@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import Icon from '../common/Icon';
 
 import { ICONS } from '../../constants/icons';
-import { COLOR } from '../../constants/styles';
+import { COLOR, FLEXROW } from '../../constants/styles';
 
-import { selectDayByCurrentDate } from '../../selectors/selectors';
+import { selectDayByCurrentDate } from '../../selectors/daysSelectors';
 
 const StyledNewDayItemDatePanel = styled.div`
   color: ${({ theme }) => theme.color.darkBlue};
@@ -39,14 +39,12 @@ const StyledNewDayListItem = styled.li`
 `;
 
 const StyledNewDayItemIconPanel = styled.div`
+  ${FLEXROW};
+  justify-content: space-around;
+  align-items: center;
   background-color: ${({ theme }) => theme.color.white};
   width: 50px;
   padding: 0 5px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
   position: absolute;
   top: -12px;
   right: 12px;

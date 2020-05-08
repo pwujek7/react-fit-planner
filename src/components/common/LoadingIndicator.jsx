@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
+import { FLEXROW } from '../../constants/styles';
+
 const bounceKeyFrames = keyframes`
   0% {
     transform: translateY(0);
@@ -43,9 +45,7 @@ const StyledLoadingContainer = styled.div`
 `;
 
 const StyledLoadingSpinnerList = styled.ul`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  ${FLEXROW};
   justify-content: center;
   align-items: center;
   position: absolute;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchAllDays } from '../../actions/daysActions';
-import { selectDays, selectDaysData } from '../../selectors/selectors';
+import { selectDays, selectDaysData } from '../../selectors/daysSelectors';
 
 import ErrorBoundary from '../common/ErrorBoundary';
 import DayList from '../day/DayList';

@@ -7,7 +7,7 @@ import DayListItem from './DayListItem';
 import NewDayListItem from './NewDayListItem';
 
 import { removeDay } from '../../actions/daysActions';
-import { selectDays } from '../../selectors/selectors';
+import { selectDays } from '../../selectors/daysSelectors';
 
 const StyledDayListContainer = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.s}) {

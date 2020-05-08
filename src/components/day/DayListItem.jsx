@@ -8,7 +8,7 @@ import StyledLink from '../common/styled/StyledLink';
 
 import { formatDate } from '../../utilities/date';
 import { ICONS } from '../../constants/icons';
-import { COLOR } from '../../constants/styles';
+import { COLOR, FLEXCOLUMN, FLEXROW } from '../../constants/styles';
 
 const StyledDayItemDatePanel = styled.div`
   color: ${({ theme }) => theme.color.gray};
@@ -54,9 +54,7 @@ const StyledDayListItem = styled.li`
 `;
 
 const StyledDayItemOptionPanel = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  ${FLEXCOLUMN};
   justify-content: space-around;
   align-items: flex-start;
 
@@ -88,14 +86,12 @@ const StyledDayItemOptionPanel = styled.div`
 `;
 
 const StyledDayItemIconPanel = styled.div`
+  ${FLEXROW};
+  justify-content: space-around;
+  align-items: center;
   background-color: ${({ theme }) => theme.color.white};
   width: 70px;
   padding: 0 5px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
   position: absolute;
   top: -12px;
   right: 12px;

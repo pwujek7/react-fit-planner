@@ -3,10 +3,10 @@ import { Field } from 'formik';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { FLEXROW } from '../../constants/styles';
+
 const StyledInputContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  ${FLEXROW};
   position: relative;
 
   & > input[type="checkbox"] {

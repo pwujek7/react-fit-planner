@@ -4,7 +4,7 @@ import { Form } from 'formik';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { selectAuth } from '../../selectors/selectors';
+import { selectAuth } from '../../selectors/authSelectors';
 
 import TextInput from '../common/TextInput';
 import FormContainer from '../common/FormContainer';

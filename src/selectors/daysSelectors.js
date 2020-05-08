@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 
-export const selectAuth = state => state.auth;
 export const selectDays = state => state.days;
 
 export const selectDaysData = createSelector(
